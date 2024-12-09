@@ -5,6 +5,7 @@ module org.example.dentalmanagement {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires java.sql;
+    requires mysql.connector.j;
 
     opens org.example.dentalmanagement to javafx.fxml;
     exports org.example.dentalmanagement;
@@ -16,4 +17,6 @@ module org.example.dentalmanagement {
     opens org.example.dentalmanagement.ADMINCONTROLLER to javafx.fxml;
     opens org.example.dentalmanagement.LOGINCONTROLLER to javafx.fxml;
     exports org.example.dentalmanagement.LOGINCONTROLLER;
+    opens org.example.dentalmanagement.REGISTRATIONCONTROLLER to javafx.fxml;
+    exports org.example.dentalmanagement.REGISTRATIONCONTROLLER;
 }
