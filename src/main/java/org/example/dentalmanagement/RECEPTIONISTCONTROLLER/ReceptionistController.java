@@ -1,4 +1,4 @@
-package org.example.dentalmanagement.CONTROLLER;
+package org.example.dentalmanagement.RECEPTIONISTCONTROLLER;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
