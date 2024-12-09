@@ -14,4 +14,6 @@ module org.example.dentalmanagement {
     opens org.example.dentalmanagement.LAUNCHER to javafx.fxml;
     exports org.example.dentalmanagement.ADMINCONTROLLER;
     opens org.example.dentalmanagement.ADMINCONTROLLER to javafx.fxml;
+    opens org.example.dentalmanagement.LOGINCONTROLLER to javafx.fxml;
+    exports org.example.dentalmanagement.LOGINCONTROLLER;
 }

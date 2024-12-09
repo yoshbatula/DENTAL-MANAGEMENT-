@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -10,11 +11,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.LOGINCONTROLLER.LoginController">
    <children>
-      <StackPane layoutX="341.0" prefHeight="476.0" prefWidth="342.0">
+      <StackPane fx:id="ContainerLogin" layoutX="341.0" prefHeight="476.0" prefWidth="342.0">
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="112.0" layoutY="89.0" text="LOG IN" textFill="#081f5c">
+                  <Label layoutX="56.0" layoutY="91.0" text="ADMIN PORTAL" textFill="#081f5c">
                      <font>
                         <Font name="Palatino Linotype" size="33.0" />
                      </font>
@@ -25,7 +26,8 @@
                      <font>
                         <Font name="Palatino Linotype" size="12.0" />
                      </font></Button>
-                  <Label layoutX="98.0" layoutY="373.0" text="CREATE NEW " />
+                  <Label layoutX="141.0" layoutY="372.0" text="OTHER ACC" />
+                  <ComboBox fx:id="OtherAcc" layoutX="96.0" layoutY="399.0" onAction="#SwitchForm" prefWidth="150.0" promptText="Select" />
                </children>
             </AnchorPane>
          </children></StackPane>
