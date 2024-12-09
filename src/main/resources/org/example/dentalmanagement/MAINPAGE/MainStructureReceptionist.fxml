@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="709.0" prefWidth="1316.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.CONTROLLER.MAINCONTROLLER">
+<AnchorPane prefHeight="709.0" prefWidth="1316.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.CONTROLLER.ReceptionistController">
    <children>
       <AnchorPane prefHeight="710.0" prefWidth="282.0">
          <children>
@@ -37,7 +37,7 @@
                   <Font name="Palatino Linotype" size="14.0" />
                </font>
             </Label>
-            <Button layoutX="56.0" layoutY="401.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="170.0" text="ADD APPOINTMENT">
+            <Button layoutX="41.0" layoutY="402.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="170.0" text="ADD APPOINTMENT">
                <font>
                   <Font name="Palatino Linotype" size="14.0" />
                </font>
@@ -47,7 +47,7 @@
                   <Font name="Palatino Linotype Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="94.0" layoutY="469.0" mnemonicParsing="false" text="DOCTORS">
+            <Button layoutX="82.0" layoutY="453.0" mnemonicParsing="false" text="DOCTORS">
                <font>
                   <Font name="Palatino Linotype" size="14.0" />
                </font>
@@ -56,8 +56,38 @@
                <image>
                   <Image url="@../images/home.png" />
                </image></ImageView>
+            <Label layoutX="87.0" layoutY="308.0" prefHeight="31.0" prefWidth="88.0" text="ADMIN" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Palatino Linotype" size="24.0" />
+               </font>
+            </Label>
+            <Button layoutX="82.0" layoutY="498.0" mnemonicParsing="false" text="SERVICES">
+               <font>
+                  <Font name="Palatino Linotype" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="72.0" layoutY="544.0" mnemonicParsing="false" text="EMPLOYEES">
+               <font>
+                  <Font name="Palatino Linotype" size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="61.0" layoutY="602.0" text="Matina, Davao City" textFill="#fcfcfc">
+               <font>
+                  <Font name="Palatino Linotype" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="628.0" text="Tel No. (082) 286-2331" textFill="#fcfcfc">
+               <font>
+                  <Font name="Palatino Linotype" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="654.0" text="Cellphone No. 09123456789" textFill="#fcfcfc">
+               <font>
+                  <Font name="Palatino Linotype" size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <StackPane layoutX="282.0" layoutY="6.0" prefHeight="710.0" prefWidth="1034.0" />
+      <StackPane layoutX="282.0" prefHeight="716.0" prefWidth="1034.0" />
    </children>
 </AnchorPane>

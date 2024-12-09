@@ -1,4 +1,4 @@
 package org.example.dentalmanagement.CONTROLLER;
 
-public class MAINCONTROLLER {
+public class AdminController {
 }
