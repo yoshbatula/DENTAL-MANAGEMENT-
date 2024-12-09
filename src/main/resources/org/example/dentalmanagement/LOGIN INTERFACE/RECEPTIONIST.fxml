@@ -9,28 +9,21 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.LOGINCONTROLLER.LoginController">
-    <children>
-        <StackPane layoutX="341.0" prefHeight="476.0" prefWidth="342.0">
-            <children>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: gray;">
-                    <children>
-                        <Label layoutX="36.0" layoutY="51.0" prefHeight="107.0" prefWidth="270.0" text=" RECEPTIONIST PORTAL" textFill="#081f5c" wrapText="true">
-                            <font>
-                                <Font name="Palatino Linotype" size="33.0" />
-                            </font>
-                        </Label>
-                        <TextField layoutX="97.0" layoutY="190.0" />
-                        <PasswordField layoutX="98.0" layoutY="244.0" />
-                        <Button layoutX="231.0" layoutY="308.0" mnemonicParsing="false" text="LOG IN" textFill="#081f5c">
-                            <font>
-                                <Font name="Palatino Linotype" size="12.0" />
-                            </font></Button>
-                        <Label layoutX="141.0" layoutY="372.0" text="OTHER ACC" />
-                        <ComboBox fx:id="OtherAcc" layoutX="96.0" layoutY="399.0" onAction="#SwitchForm" prefWidth="150.0" promptText="Select" />
-                    </children>
-                </AnchorPane>
-            </children></StackPane>
-        <AnchorPane prefHeight="476.0" prefWidth="334.0" />
-    </children>
-</AnchorPane>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="342.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.LOGINCONTROLLER.LoginController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="51.0" layoutY="85.0" text="RECEPTIONIST" textFill="#081f5c">
+               <font>
+                  <Font name="Palatino Linotype" size="33.0" />
+               </font>
+            </Label>
+            <TextField layoutX="51.0" layoutY="197.0" prefHeight="26.0" prefWidth="239.0" />
+            <PasswordField layoutX="51.0" layoutY="256.0" prefHeight="26.0" prefWidth="239.0" />
+            <ComboBox fx:id="OtherAcc" layoutX="96.0" layoutY="385.0" onAction="#SwitchForm" prefWidth="150.0" />
+            <Button layoutX="238.0" layoutY="339.0" mnemonicParsing="false" text="LOG IN" />
+            <Button layoutX="208.0" layoutY="290.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="CREATE ACC" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
