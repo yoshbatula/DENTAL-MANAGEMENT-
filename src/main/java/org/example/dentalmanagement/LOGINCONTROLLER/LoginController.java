@@ -37,7 +37,9 @@ public class LoginController implements Initializable {
     @FXML
     private Button CreateAdmin;
 
-    private TextField adminTF;
+
+    @FXML
+    private TextField adminsTF;
 
     @FXML
     private Button loginADMIN;
@@ -112,15 +114,13 @@ public class LoginController implements Initializable {
 
     public void login() {
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
-        String username = adminTF.getText();
-        String password = passwordTF.getText();
 
         try {
             Statement stmt = db.getConnection().createStatement();
             String sql = "SELECT * FROM WHERE Username = ? AND Password = ?";
             PreparedStatement pstmt = db.getConnection().prepareStatement(sql);
-            pstmt.setString(1, username);
-            pstmt.setString(2, password);
+            pstmt.setString(1, adminsTF.getText());
+            pstmt.setString(2, passwordTF.getText());
             ResultSet result = pstmt.executeQuery();
 
             if (!result.next()) {
