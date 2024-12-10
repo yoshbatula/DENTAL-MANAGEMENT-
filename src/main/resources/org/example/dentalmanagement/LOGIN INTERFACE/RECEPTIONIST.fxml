@@ -5,34 +5,51 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="342.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.LOGINCONTROLLER.LoginController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
+            <ImageView fitHeight="477.0" fitWidth="362.0" opacity="0.4" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/dental%20(1).jpg" />
+               </image>
+            </ImageView>
             <Label layoutX="51.0" layoutY="85.0" text="RECEPTIONIST" textFill="#081f5c">
                <font>
                   <Font name="Palatino Linotype" size="33.0" />
                </font>
             </Label>
-            <TextField layoutX="62.0" layoutY="198.0" prefHeight="26.0" prefWidth="239.0" />
-            <PasswordField layoutX="62.0" layoutY="257.0" prefHeight="26.0" prefWidth="239.0" />
-            <ComboBox fx:id="OtherAcc" layoutX="96.0" layoutY="385.0" onAction="#SwitchForm" prefWidth="150.0" />
-            <Button layoutX="238.0" layoutY="339.0" mnemonicParsing="false" text="LOG IN" textFill="#081f5c">
-               <font>
-                  <Font name="Palatino Linotype" size="14.0" />
-               </font></Button>
-            <Button layoutX="207.0" layoutY="292.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="CREATE ACC">
+            <TextField layoutX="80.0" layoutY="196.0" prefHeight="26.0" prefWidth="222.0" promptText="Username" style="-fx-background-color: transparent;" />
+            <PasswordField layoutX="82.0" layoutY="256.0" prefHeight="26.0" prefWidth="222.0" promptText="Password" style="-fx-background-color: transparent;" />
+            <ComboBox fx:id="OtherAcc" layoutX="95.0" layoutY="406.0" onAction="#SwitchForm" prefWidth="150.0" promptText="SELECT" style="-fx-background-color: transparent; -fx-border-color: gray;" />
+            <Button layoutX="55.0" layoutY="332.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: #081f5c;" text="LOG IN" textFill="WHITE">
                <font>
                   <Font name="Palatino Linotype" size="12.0" />
                </font></Button>
-            <Label layoutX="131.0" layoutY="358.0" text="Other Account">
+            <Button layoutX="207.0" layoutY="284.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Create Account" textFill="#081f5c" />
+            <Label layoutX="131.0" layoutY="382.0" text="Other Account">
                <font>
                   <Font name="Palatino Linotype" size="12.0" />
                </font></Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="54.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/user%20(4).png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="54.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/locked-padlock%20(1).png" />
+               </image>
+            </ImageView>
+            <Line endX="127.0" layoutX="171.0" layoutY="223.0" startX="-90.00000762939453" />
+            <Line endX="99.0" layoutX="200.0" layoutY="282.0" startX="-119.33333587646484" />
          </children>
       </AnchorPane>
    </children>

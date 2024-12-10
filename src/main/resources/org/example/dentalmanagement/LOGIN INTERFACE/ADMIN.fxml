@@ -9,6 +9,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="472.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.LOGINCONTROLLER.LoginController">
@@ -27,15 +29,30 @@
                         <Font name="Palatino Linotype" size="33.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="passwordTF" layoutX="98.0" layoutY="244.0" promptText="password" />
-                  <Button fx:id="loginADMIN" layoutX="231.0" layoutY="308.0" mnemonicParsing="false" onAction="#login" text="LOG IN" textFill="#081f5c">
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="52.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/user%20(4).png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="loginADMIN" layoutX="58.0" layoutY="324.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="248.0" style="-fx-background-color: #081f5c;" text="LOG IN" textFill="WHITE">
+                     <font>
+                        <Font name="Palatino Linotype Bold" size="12.0" />
+                     </font></Button>
+                  <TextField fx:id="adminsTF" layoutX="80.0" layoutY="195.0" prefHeight="26.0" prefWidth="222.0" promptText="Username" style="-fx-background-color: transparent;" />
+                  <PasswordField fx:id="passwordTF" layoutX="81.0" layoutY="251.0" prefHeight="25.0" prefWidth="222.0" promptText="Password" style="-fx-background-color: transparent;" />
+                  <Label layoutX="141.0" layoutY="372.0" text="Other Account">
                      <font>
                         <Font name="Palatino Linotype" size="12.0" />
-                     </font></Button>
-                  <Label layoutX="141.0" layoutY="372.0" text="OTHER ACC" />
-                  <ComboBox fx:id="OtherAcc" layoutX="96.0" layoutY="399.0" onAction="#SwitchForm" prefWidth="150.0" promptText="Select" />
-                  <Button fx:id="CreateAdmin" layoutX="222.0" layoutY="274.0" mnemonicParsing="false" onAction="#RegForm" style="-fx-background-color: transparent;" text="CREATE ACC" />
-                  <TextField fx:id="adminsTF" layoutX="96.0" layoutY="204.0" prefHeight="26.0" prefWidth="150.0" promptText="username" />
+                     </font></Label>
+                  <ComboBox fx:id="OtherAcc" layoutX="96.0" layoutY="399.0" onAction="#SwitchForm" prefHeight="28.0" prefWidth="168.0" promptText="Select" style="-fx-background-color: transparent; -fx-border-color: gray;" />
+                  <Button fx:id="CreateAdmin" layoutX="207.0" layoutY="280.0" mnemonicParsing="false" onAction="#RegForm" style="-fx-background-color: transparent;" text="Create Account" textFill="#081f5c" />
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="52.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/locked-padlock%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <Line endX="114.0" endY="1.52587890625E-5" layoutX="188.0" layoutY="221.0" startX="-100.0" stroke="#7d7d7d" />
+                  <Line endX="114.0" endY="1.52587890625E-5" layoutX="188.0" layoutY="276.0" startX="-100.0" stroke="#7d7d7d" />
                </children>
             </AnchorPane>
          </children></StackPane>
@@ -46,6 +63,25 @@
                   <Image url="@../images/421509594_1053495539070680_6653102900929360676_n%20(1).png" />
                </image>
             </ImageView>
+            <VBox alignment="CENTER" layoutX="-1.0" layoutY="-1.0" prefHeight="476.0" prefWidth="341.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="161.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/LOGO%20(2).png" />
+                     </image>
+                  </ImageView>
+                  <Label text="UDental Clinic" textFill="WHITE">
+                     <font>
+                        <Font name="Palatino Linotype" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label text="Healthy slimes, Brighter Future" textFill="WHITE">
+                     <font>
+                        <Font name="Palatino Linotype" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
          </children></AnchorPane>
    </children>
 </AnchorPane>

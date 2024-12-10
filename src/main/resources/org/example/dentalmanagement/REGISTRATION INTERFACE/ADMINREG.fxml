@@ -4,31 +4,79 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.REGISTRATIONCONTROLLER.RegistrationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.REGISTRATIONCONTROLLER.RegistrationController">
     <children>
-        <StackPane layoutX="341.0" prefHeight="476.0" prefWidth="342.0">
+        <StackPane layoutX="336.0" prefHeight="461.0" prefWidth="357.0">
             <children>
-                <AnchorPane fx:id="containerReg" prefHeight="200.0" prefWidth="200.0">
+                <AnchorPane fx:id="containerReg" prefHeight="476.0" prefWidth="349.0">
                     <children>
+                  <ImageView fitHeight="468.0" fitWidth="357.0" layoutX="-3.0" opacity="0.4" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/dental%20(1).jpg" />
+                     </image>
+                  </ImageView>
                         <Label layoutX="56.0" layoutY="69.0" text="REGISTRATION" textFill="#081f5c">
                             <font>
                                 <Font name="Palatino Linotype" size="33.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="RegFullNameTF" layoutX="60.0" layoutY="159.0" prefHeight="26.0" prefWidth="235.0" promptText="Username" />
-                        <Button fx:id="RegSubmit" layoutX="231.0" layoutY="308.0" mnemonicParsing="false" onAction="#RegistrationForm" text="SUBMIT" textFill="#081f5c">
+                        <TextField fx:id="RegFullNameTF" layoutX="60.0" layoutY="159.0" prefHeight="26.0" prefWidth="235.0" promptText="Username" style="-fx-background-color: transparent;" />
+                        <Button fx:id="RegSubmit" layoutX="57.0" layoutY="330.0" mnemonicParsing="false" onAction="#RegistrationForm" prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: #081f5c;" text="SUBMIT" textFill="WHITE">
                             <font>
                                 <Font name="Palatino Linotype" size="12.0" />
                             </font></Button>
-                  <TextField fx:id="RegContactInfoTF" layoutX="60.0" layoutY="208.0" prefHeight="26.0" prefWidth="235.0" promptText="ContactInfo" />
-                  <PasswordField fx:id="RegPasswordPT" layoutX="60.0" layoutY="254.0" prefHeight="26.0" prefWidth="235.0" promptText="Password" />
+                  <TextField fx:id="RegContactInfoTF" layoutX="60.0" layoutY="214.0" prefHeight="26.0" prefWidth="235.0" promptText="ContactInfo" style="-fx-background-color: transparent;" />
+                  <PasswordField fx:id="RegPasswordPT" layoutX="60.0" layoutY="264.0" prefHeight="26.0" prefWidth="235.0" promptText="Password" style="-fx-background-color: transparent;" />
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="31.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/user%20(4).png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="31.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/locked-padlock%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <Line endX="134.3333740234375" layoutX="161.0" layoutY="184.0" startX="-100.0" />
+                  <Line endX="135.3333740234375" layoutX="160.0" layoutY="290.0" startX="-100.0" />
+                  <Line endX="134.3333740234375" layoutX="160.0" layoutY="240.0" startX="-100.0" />
                     </children>
                 </AnchorPane>
             </children></StackPane>
-        <AnchorPane prefHeight="476.0" prefWidth="334.0" />
+        <AnchorPane prefHeight="476.0" prefWidth="337.0">
+         <children>
+            <ImageView fitHeight="468.0" fitWidth="337.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/421509594_1053495539070680_6653102900929360676_n%20(1).png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" layoutX="1.0" layoutY="-1.0" prefHeight="468.0" prefWidth="337.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="161.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/LOGO%20(2).png" />
+                     </image>
+                  </ImageView>
+                  <Label text="UDental Clinic" textFill="WHITE">
+                     <font>
+                        <Font name="Palatino Linotype" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label text="Healthy slimes, Brighter Future" textFill="WHITE">
+                     <font>
+                        <Font name="Palatino Linotype" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children></AnchorPane>
     </children>
 </AnchorPane>
