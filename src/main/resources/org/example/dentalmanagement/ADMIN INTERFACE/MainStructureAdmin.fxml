@@ -17,7 +17,7 @@
                   <Image url="@../images/421509594_1053495539070680_6653102900929360676_n%20(1).png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="399.0" fitWidth="282.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="422.0" fitWidth="282.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/421509594_1053495539070680_6653102900929360676_n%20(1).png" />
                </image>
@@ -37,17 +37,17 @@
                   <Font name="Palatino Linotype" size="14.0" />
                </font>
             </Label>
-            <Button layoutX="41.0" layoutY="402.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="170.0" text="ADD APPOINTMENT">
+            <Button fx:id="AppointmentBTN" layoutX="41.0" layoutY="402.0" mnemonicParsing="false" onAction="#switchform" prefHeight="28.0" prefWidth="170.0" text="ADD APPOINTMENT">
                <font>
                   <Font name="Palatino Linotype" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="70.0" layoutY="351.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="115.0" text="HOME" textAlignment="CENTER">
+            <Button fx:id="HomeBTN" layoutX="70.0" layoutY="351.0" mnemonicParsing="false" onAction="#switchform" prefHeight="28.0" prefWidth="115.0" text="HOME" textAlignment="CENTER">
                <font>
                   <Font name="Palatino Linotype Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="82.0" layoutY="453.0" mnemonicParsing="false" text="DOCTORS">
+            <Button fx:id="DoctorsBTN" layoutX="82.0" layoutY="453.0" mnemonicParsing="false" onAction="#switchform" text="DOCTORS">
                <font>
                   <Font name="Palatino Linotype" size="14.0" />
                </font>
@@ -61,12 +61,12 @@
                   <Font name="Palatino Linotype" size="24.0" />
                </font>
             </Label>
-            <Button layoutX="82.0" layoutY="498.0" mnemonicParsing="false" text="SERVICES">
+            <Button fx:id="ServicesBTN" layoutX="82.0" layoutY="498.0" mnemonicParsing="false" onAction="#switchform" text="SERVICES">
                <font>
                   <Font name="Palatino Linotype" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="72.0" layoutY="544.0" mnemonicParsing="false" text="EMPLOYEES">
+            <Button fx:id="RevenueBTN" layoutX="82.0" layoutY="544.0" mnemonicParsing="false" onAction="#switchform" text="REVENUE">
                <font>
                   <Font name="Palatino Linotype" size="14.0" />
                </font>
@@ -88,6 +88,9 @@
             </Label>
          </children>
       </AnchorPane>
-      <StackPane layoutX="282.0" prefHeight="716.0" prefWidth="1034.0" />
+      <StackPane fx:id="container" layoutX="282.0" prefHeight="723.0" prefWidth="1034.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+         </children></StackPane>
    </children>
 </AnchorPane>
