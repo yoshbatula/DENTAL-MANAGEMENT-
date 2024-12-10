@@ -117,7 +117,7 @@ public class LoginController implements Initializable {
 
         try {
             Statement stmt = db.getConnection().createStatement();
-            String sql = "SELECT * FROM WHERE Username = ? AND Password = ?";
+            String sql = "SELECT * FROM admin WHERE Username = ? AND Password = ?";
             PreparedStatement pstmt = db.getConnection().prepareStatement(sql);
             pstmt.setString(1, adminsTF.getText());
             pstmt.setString(2, passwordTF.getText());
@@ -130,10 +130,17 @@ public class LoginController implements Initializable {
                 alert.setContentText("Username or Password is incorrect.");
                 alert.show();
             } else {
-                FXMLLoader fxmlLoader = new FXMLLoader();
+                Stage stage = new Stage();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/dentalmanagement/MAINPAGE INTERFACE/MainStructureAdmin.fxml"));
+                Scene scene = new Scene(fxmlLoader.load());
+                stage.setScene(scene);
+                stage.show();
+
+                Stage window = (Stage) CreateAdmin.getScene().getWindow();
+                window.close();
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
