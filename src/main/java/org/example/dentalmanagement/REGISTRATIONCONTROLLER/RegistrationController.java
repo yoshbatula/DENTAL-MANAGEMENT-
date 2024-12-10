@@ -38,7 +38,20 @@ public class RegistrationController {
     @FXML
     private PasswordField RegPasswordPT;
 
-    public void RegistrationForm(ActionEvent event) {
+    @FXML
+    private TextField RecepContactInfoTF;
+
+    @FXML
+    private PasswordField RecepPasswordTF;
+
+    @FXML
+    private Button RecepSubmitBTN;
+
+    @FXML
+    private TextField RecepUsernameTF;
+
+
+    public void RegistrationFormAdmin(ActionEvent event) {
         String username = RegFullNameTF.getText();
         String password = RegPasswordPT.getText();
         String contactinfo = RegContactInfoTF.getText();
@@ -82,4 +95,38 @@ public class RegistrationController {
         }
     }
 
+    public void RegistrationFormReceptionist(ActionEvent event) {
+        String username = RecepUsernameTF.getText();
+        String contact = RecepContactInfoTF.getText();
+        String password = RecepPasswordTF.getText();
+
+        DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
+
+        if (RecepUsernameTF.getText().isBlank()) {
+            RecepUsernameTF.setStyle("-fx-border-color: red");
+        } else if (RecepContactInfoTF.getText().isBlank()) {
+            RecepContactInfoTF.setStyle("-fx-border-color: red");
+        } else if (RecepPasswordTF.getText().isBlank()) {
+            RecepPasswordTF.setStyle("-fx-border-color: red");
+        } else {
+            try {
+              Statement stmt = db.getConnection().createStatement();
+              String sql = "INSERT INTO receptionist (Username,ContactInfo,Password) VALUES (?,?,?)";
+              PreparedStatement pmt = db.getConnection().prepareStatement(sql);
+              pmt.setString(1, username);
+              pmt.setString(2, contact);
+              pmt.setString(3, password);
+
+              int rows = pmt.executeUpdate();
+
+              if (rows > 0) {
+                  System.out.println("Succesfully Inserted");
+              } else {
+                  System.out.println("FAILED");
+              }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

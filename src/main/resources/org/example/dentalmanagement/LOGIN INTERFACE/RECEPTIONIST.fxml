@@ -26,14 +26,14 @@
                   <Font name="Palatino Linotype" size="33.0" />
                </font>
             </Label>
-            <TextField layoutX="80.0" layoutY="196.0" prefHeight="26.0" prefWidth="222.0" promptText="Username" style="-fx-background-color: transparent;" />
-            <PasswordField layoutX="82.0" layoutY="256.0" prefHeight="26.0" prefWidth="222.0" promptText="Password" style="-fx-background-color: transparent;" />
+            <TextField fx:id="ReceptionUsernameTF" layoutX="80.0" layoutY="196.0" prefHeight="26.0" prefWidth="222.0" promptText="Username" style="-fx-background-color: transparent;" />
+            <PasswordField fx:id="ReceptionPasswordTF" layoutX="82.0" layoutY="256.0" prefHeight="26.0" prefWidth="222.0" promptText="Password" style="-fx-background-color: transparent;" />
             <ComboBox fx:id="OtherAcc" layoutX="95.0" layoutY="406.0" onAction="#SwitchForm" prefWidth="150.0" promptText="SELECT" style="-fx-background-color: transparent; -fx-border-color: gray;" />
-            <Button layoutX="55.0" layoutY="332.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: #081f5c;" text="LOG IN" textFill="WHITE">
+            <Button fx:id="ReceptionSubmitBTN" layoutX="55.0" layoutY="332.0" mnemonicParsing="false" onAction="#setLoginReceptionist" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: #081f5c;" text="LOG IN" textFill="WHITE">
                <font>
                   <Font name="Palatino Linotype" size="12.0" />
                </font></Button>
-            <Button layoutX="207.0" layoutY="284.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Create Account" textFill="#081f5c" />
+            <Button fx:id="ReceptionistCreateAcc" layoutX="207.0" layoutY="284.0" mnemonicParsing="false" onAction="#RegForm" style="-fx-background-color: transparent;" text="Create Account" textFill="#081f5c" />
             <Label layoutX="131.0" layoutY="382.0" text="Other Account">
                <font>
                   <Font name="Palatino Linotype" size="12.0" />

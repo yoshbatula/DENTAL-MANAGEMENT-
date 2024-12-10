@@ -23,14 +23,14 @@
                         <Image url="@../images/dental%20(1).jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="70.0" layoutY="73.0" text="REGISTRATION" textFill="#081f5c">
+                  <Label layoutX="55.0" layoutY="40.0" prefHeight="110.0" prefWidth="268.0" text="RECEPTIONIST REGISTRATION" textAlignment="CENTER" textFill="#081f5c" wrapText="true">
                      <font>
                         <Font name="Palatino Linotype" size="33.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="70.0" layoutY="180.0" prefHeight="25.0" prefWidth="235.0" promptText="Username" style="-fx-background-color: Transparent;" />
-                  <TextField layoutX="70.0" layoutY="247.0" prefHeight="25.0" prefWidth="235.0" promptText="ContactInfo" style="-fx-background-color: Transparent;" />
-                  <PasswordField layoutX="70.0" layoutY="313.0" prefHeight="25.0" prefWidth="235.0" promptText="Password" style="-fx-background-color: transparent;" />
+                  <TextField fx:id="RecepUsernameTF" layoutX="70.0" layoutY="180.0" prefHeight="25.0" prefWidth="235.0" promptText="Username" style="-fx-background-color: Transparent;" />
+                  <TextField fx:id="RecepContactInfoTF" layoutX="70.0" layoutY="247.0" prefHeight="25.0" prefWidth="235.0" promptText="ContactInfo" style="-fx-background-color: Transparent;" />
+                  <PasswordField fx:id="RecepPasswordTF" layoutX="70.0" layoutY="313.0" prefHeight="25.0" prefWidth="235.0" promptText="Password" style="-fx-background-color: transparent;" />
                   <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="42.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/user%20(4).png" />
@@ -46,7 +46,7 @@
                   <ImageView fitHeight="38.0" fitWidth="37.0" layoutX="157.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true" />
                   <Line endX="128.66668701171875" layoutX="177.0" layoutY="272.0" startX="-106.0" />
                   <Line endX="128.66668701171875" layoutX="177.0" layoutY="338.0" startX="-106.0" />
-                  <Button layoutX="69.0" layoutY="376.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="240.0" style="-fx-background-color: #081f5c;" text="Submit" textFill="WHITE">
+                  <Button fx:id="RecepSubmitBTN" layoutX="69.0" layoutY="376.0" mnemonicParsing="false" onAction="#RegistrationFormReceptionist" prefHeight="25.0" prefWidth="240.0" style="-fx-background-color: #081f5c;" text="Submit" textFill="WHITE">
                      <font>
                         <Font name="Palatino Linotype" size="12.0" />
                      </font>

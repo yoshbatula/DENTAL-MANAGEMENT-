@@ -34,7 +34,7 @@
                         <Image url="@../images/user%20(4).png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="loginADMIN" layoutX="58.0" layoutY="324.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="248.0" style="-fx-background-color: #081f5c;" text="LOG IN" textFill="WHITE">
+                  <Button fx:id="loginADMIN" layoutX="58.0" layoutY="324.0" mnemonicParsing="false" onAction="#setLoginADMIN" prefHeight="25.0" prefWidth="248.0" style="-fx-background-color: #081f5c;" text="LOG IN" textFill="WHITE">
                      <font>
                         <Font name="Palatino Linotype Bold" size="12.0" />
                      </font></Button>
