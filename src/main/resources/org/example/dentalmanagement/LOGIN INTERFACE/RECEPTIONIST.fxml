@@ -18,11 +18,21 @@
                   <Font name="Palatino Linotype" size="33.0" />
                </font>
             </Label>
-            <TextField layoutX="51.0" layoutY="197.0" prefHeight="26.0" prefWidth="239.0" />
-            <PasswordField layoutX="51.0" layoutY="256.0" prefHeight="26.0" prefWidth="239.0" />
+            <TextField layoutX="62.0" layoutY="198.0" prefHeight="26.0" prefWidth="239.0" />
+            <PasswordField layoutX="62.0" layoutY="257.0" prefHeight="26.0" prefWidth="239.0" />
             <ComboBox fx:id="OtherAcc" layoutX="96.0" layoutY="385.0" onAction="#SwitchForm" prefWidth="150.0" />
-            <Button layoutX="238.0" layoutY="339.0" mnemonicParsing="false" text="LOG IN" />
-            <Button layoutX="208.0" layoutY="290.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="CREATE ACC" />
+            <Button layoutX="238.0" layoutY="339.0" mnemonicParsing="false" text="LOG IN" textFill="#081f5c">
+               <font>
+                  <Font name="Palatino Linotype" size="14.0" />
+               </font></Button>
+            <Button layoutX="207.0" layoutY="292.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="CREATE ACC">
+               <font>
+                  <Font name="Palatino Linotype" size="12.0" />
+               </font></Button>
+            <Label layoutX="131.0" layoutY="358.0" text="Other Account">
+               <font>
+                  <Font name="Palatino Linotype" size="12.0" />
+               </font></Label>
          </children>
       </AnchorPane>
    </children>

@@ -5,16 +5,23 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.LOGINCONTROLLER.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="472.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.LOGINCONTROLLER.LoginController">
    <children>
-      <StackPane fx:id="ContainerLogin" layoutX="341.0" prefHeight="476.0" prefWidth="342.0">
+      <StackPane fx:id="ContainerLogin" layoutX="334.0" prefHeight="476.0" prefWidth="349.0">
          <children>
             <AnchorPane fx:id="AnchorLogin" prefHeight="200.0" prefWidth="200.0">
                <children>
+                  <ImageView fitHeight="472.0" fitWidth="361.0" opacity="0.4" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/dental%20(1).jpg" />
+                     </image>
+                  </ImageView>
                   <Label layoutX="56.0" layoutY="91.0" text="ADMIN PORTAL" textFill="#081f5c">
                      <font>
                         <Font name="Palatino Linotype" size="33.0" />
@@ -32,6 +39,13 @@
                </children>
             </AnchorPane>
          </children></StackPane>
-      <AnchorPane prefHeight="476.0" prefWidth="334.0" />
+      <AnchorPane prefHeight="476.0" prefWidth="334.0">
+         <children>
+            <ImageView fitHeight="476.0" fitWidth="481.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/421509594_1053495539070680_6653102900929360676_n%20(1).png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
    </children>
 </AnchorPane>
