@@ -1,6 +1,5 @@
 package org.example.dentalmanagement.LOGINCONTROLLER;
 
-import com.mysql.cj.xdevapi.Result;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -191,7 +190,7 @@ public class LoginController implements Initializable {
             } else {
 
                 Stage stage = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/dentalmanagement/MAINPAGE INTERFACE/MainStructureReceptionist.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/dentalmanagement/RECEPTIONIST INTERFACE/MainStructureReceptionist.fxml"));
                 Scene scene = new Scene(loader.load());
                 stage.setScene(scene);
                 stage.show();
