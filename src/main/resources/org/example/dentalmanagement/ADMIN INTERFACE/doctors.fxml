@@ -55,12 +55,12 @@
                </children>
             </VBox>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#081f5c" height="443.0" layoutX="20.0" layoutY="203.0" stroke="WHITE" strokeType="INSIDE" width="999.0" />
-            <TableView layoutX="40.0" layoutY="219.0" prefHeight="405.0" prefWidth="963.0">
+            <TableView fx:id="TableDoctor" layoutX="40.0" layoutY="219.0" prefHeight="405.0" prefWidth="963.0">
                <columns>
-                  <TableColumn editable="false" prefWidth="168.00000381469727" sortable="false" text="DOCTOR ID" />
-                  <TableColumn editable="false" minWidth="7.33331298828125" prefWidth="367.3334503173828" sortable="false" text="FULLNAME" />
-                  <TableColumn editable="false" minWidth="7.33331298828125" prefWidth="191.333251953125" sortable="false" text="SPECIALIZATION" />
-                  <TableColumn editable="false" minWidth="7.33331298828125" prefWidth="234.6666259765625" sortable="false" text="CONTACT INFO" />
+                  <TableColumn fx:id="DoctorID" editable="false" prefWidth="168.00000381469727" sortable="false" text="DOCTOR ID" />
+                  <TableColumn fx:id="FullName" editable="false" minWidth="7.33331298828125" prefWidth="367.3334503173828" sortable="false" text="FULLNAME" />
+                  <TableColumn fx:id="Specialization" editable="false" minWidth="7.33331298828125" prefWidth="191.333251953125" sortable="false" text="SPECIALIZATION" />
+                  <TableColumn fx:id="Contact" editable="false" minWidth="7.33331298828125" prefWidth="234.6666259765625" sortable="false" text="CONTACT INFO" />
                </columns>
             </TableView>
             <Button layoutX="759.0" layoutY="662.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="119.0" style="-fx-background-color: #081f5c;" text="UPDATE" textFill="WHITE">

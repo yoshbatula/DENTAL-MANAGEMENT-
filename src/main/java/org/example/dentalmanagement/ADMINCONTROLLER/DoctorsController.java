@@ -9,7 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.dentalmanagement.DATABASE.DATABASECONNECTIVITY;
-
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -30,6 +31,22 @@ public class DoctorsController {
 
     @FXML
     private TextField SpecTF;
+
+
+    @FXML
+    private TableColumn<DoctorsInfoData, String> Contact;
+
+    @FXML
+    private TableColumn<DoctorsInfoData, String> DoctorID;
+
+    @FXML
+    private TableColumn<DoctorsInfoData, String> FullName;
+
+    @FXML
+    private TableColumn<?, ?> Specialization;
+
+    @FXML
+    private TableView<?> TableDoctor;
 
 
     public void SwitchToAddDoctor(ActionEvent event) throws IOException {
@@ -69,7 +86,7 @@ public class DoctorsController {
 
                 if (rows > 0) {
                     System.out.println("Doctor added successfully");
-                    Platform.exit();
+
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
