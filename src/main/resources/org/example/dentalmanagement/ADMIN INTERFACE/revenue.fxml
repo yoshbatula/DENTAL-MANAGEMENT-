@@ -42,7 +42,7 @@
             </AnchorPane>
             <VBox alignment="CENTER" layoutX="11.0" layoutY="12.0" prefHeight="144.0" prefWidth="483.0">
                <children>
-                  <Label prefHeight="39.0" prefWidth="153.0" text="REVENUE" textFill="#081f5c">
+                  <Label prefHeight="39.0" prefWidth="122.0" text="Revenue" textFill="#081f5c">
                      <font>
                         <Font name="Palatino Linotype Bold" size="30.0" />
                      </font>

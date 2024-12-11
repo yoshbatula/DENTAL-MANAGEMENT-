@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="709.0" prefWidth="1316.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.RECEPTIONISTCONTROLLER.ReceptionistController">
+<AnchorPane prefHeight="709.0" prefWidth="1316.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.RECEPTIONIST_CONTROLLER.ReceptionistController">
    <children>
       <AnchorPane prefHeight="710.0" prefWidth="282.0">
          <children>
@@ -45,7 +45,7 @@
             <Font name="Palatino Linotype" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="RDoctorBTN" alignment="CENTER" layoutX="98.0" layoutY="469.0" mnemonicParsing="false" text="DOCTORS">
+      <Button fx:id="RDoctorBTN" alignment="CENTER" layoutX="98.0" layoutY="469.0" mnemonicParsing="false" onAction="#RSwitchform" text="DOCTORS">
          <font>
             <Font name="Palatino Linotype" size="14.0" />
          </font>
@@ -55,12 +55,12 @@
             <Font name="Palatino Linotype Bold" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="RServiceBTN" alignment="CENTER" layoutX="98.0" layoutY="517.0" mnemonicParsing="false" text="SERVICES">
+      <Button fx:id="RServiceBTN" alignment="CENTER" layoutX="98.0" layoutY="517.0" mnemonicParsing="false" onAction="#RSwitchform" text="SERVICES">
          <font>
             <Font name="Palatino Linotype" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="RRevenueBTN" alignment="CENTER" layoutX="98.0" layoutY="566.0" mnemonicParsing="false" text="REVENUE">
+      <Button fx:id="RRevenueBTN" alignment="CENTER" layoutX="98.0" layoutY="566.0" mnemonicParsing="false" onAction="#RSwitchform" text="REVENUE">
          <font>
             <Font name="Palatino Linotype" size="14.0" />
          </font>
