@@ -89,9 +89,7 @@ public class LoginController implements Initializable {
                 return;
             }
 
-
             Parent root = loader.load();
-
 
             if (AnchorLogin != null) {
                 AnchorLogin.getChildren().clear();

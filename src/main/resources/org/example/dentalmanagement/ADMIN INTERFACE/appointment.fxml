@@ -13,14 +13,14 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1034.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane prefHeight="731.0" prefWidth="1099.0">
          <children>
-            <ImageView fitHeight="724.0" fitWidth="1117.0" layoutX="-75.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="739.0" fitWidth="1134.0" layoutX="69.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/bg_Add1.PNG" />
                </image>
             </ImageView>
-            <AnchorPane layoutX="32.0" layoutY="25.0" prefHeight="666.0" prefWidth="518.0" style="-fx-background-color: #EDF1F6; -fx-background-radius: 20px;">
+            <AnchorPane layoutX="110.0" layoutY="30.0" prefHeight="666.0" prefWidth="518.0" style="-fx-background-color: #EDF1F6; -fx-background-radius: 20px;">
                <children>
                   <Label layoutX="163.0" layoutY="48.0" prefHeight="29.0" prefWidth="212.0" text="PATIENT DETAILS" textAlignment="CENTER" textFill="#081f5c">
                      <font>
@@ -74,7 +74,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="551.0" layoutY="-1.0" prefHeight="722.0" prefWidth="484.0">
+            <AnchorPane layoutX="671.0" layoutY="23.0" prefHeight="722.0" prefWidth="484.0">
                <children>
                   <VBox alignment="CENTER" layoutX="1.0" layoutY="2.0" prefHeight="144.0" prefWidth="483.0">
                      <children>
