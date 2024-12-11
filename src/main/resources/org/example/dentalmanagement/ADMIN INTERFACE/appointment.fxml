@@ -49,7 +49,7 @@
                         <Font name="Palatino Linotype Bold" size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="DateOfBirthTF" layoutX="270.0" layoutY="270.0" prefHeight="30.0" prefWidth="204.0" promptText="MM/DD/YY" />
+                  <TextField fx:id="DateOfBirthTF" layoutX="270.0" layoutY="270.0" prefHeight="30.0" prefWidth="204.0" promptText="YYYY-MM-DD" />
                   <Label layoutX="44.0" layoutY="398.0" prefHeight="29.0" prefWidth="189.0" text="CONTACT NUMBER:" textFill="#081f5c">
                      <font>
                         <Font name="Palatino Linotype Bold" size="16.0" />
