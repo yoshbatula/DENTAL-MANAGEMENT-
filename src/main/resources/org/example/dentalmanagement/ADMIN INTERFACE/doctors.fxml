@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1034.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1034.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.ADMINCONTROLLER.DoctorsController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" />
       <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="484.0">
@@ -73,7 +73,7 @@
                   <Font name="Palatino Linotype Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="613.0" layoutY="663.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="133.0" style="-fx-background-color: #081f5c;" text="ADD" textFill="WHITE">
+            <Button fx:id="AddDoctorsBTN" layoutX="613.0" layoutY="663.0" mnemonicParsing="false" onAction="#SwitchToAddDoctor" prefHeight="39.0" prefWidth="133.0" style="-fx-background-color: #081f5c;" text="ADD" textFill="WHITE">
                <font>
                   <Font name="Palatino Linotype Bold" size="16.0" />
                </font>
