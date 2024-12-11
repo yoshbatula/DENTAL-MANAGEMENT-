@@ -3,13 +3,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.example.dentalmanagement.DATABASE.DATABASECONNECTIVITY;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 import static java.sql.Date.valueOf;
 
@@ -33,8 +31,12 @@ public class AppointmentController {
     @FXML
     private Button ProceedBTN;
 
+    @FXML
+    private Label PatientIDLabel;
+
     public void Patient() {
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
+        Singleton instance = Singleton.getInstance();
 
         if (FullNameTF.getText().isBlank()) {
             FullNameTF.setStyle("-fx-border-color: red");
@@ -62,8 +64,15 @@ public class AppointmentController {
                 if (rows > 0) {
                     System.out.println("Succesfully inserted");
                 } else {
-                    System.out.println("Failed");
+                    Statement stm = db.getConnection().createStatement();
+                    String SQL = "SELECT PatientID FROM patient WHERE FullName = ?";
+                    PreparedStatement ptm = db.getConnection().prepareStatement(SQL);
+                    ptm.setString(1, FullNameTF.getText());
+                    ResultSet rs = ptm.executeQuery();
+
+                    
                 }
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
