@@ -6,14 +6,14 @@ public class DoctorsInfoData {
     private String Specialization;
     private String ContactInfo;
 
-    public DoctorsInfoData(int DoctorID, String Fullname, String Specialization, String ContactInfo) {
+    public DoctorsInfoData(Integer DoctorID, String Fullname, String Specialization, String ContactInfo) {
         this.DoctorID = DoctorID;
         this.Fullname = Fullname;
         this.Specialization = Specialization;
         this.ContactInfo = ContactInfo;
     }
 
-    public int getDoctorID() {
+    public Integer getDoctorID() {
         return DoctorID;
     }
 

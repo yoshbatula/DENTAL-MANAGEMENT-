@@ -109,12 +109,12 @@ public class DoctorsController {
 
         try {
             Statement stmt = db.getConnection().createStatement();
-            String sql = "SELECT * FROM doctor"; // Ensure DoctorID is part of the query
+            String sql = "SELECT * FROM doctor";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 DoctorsInfoData data = new DoctorsInfoData(
-                        rs.getInt("DoctorID"), // Retrieve the auto-incremented DoctorID
+                        rs.getInt("DoctorID"),
                         rs.getString("Fullname"),
                         rs.getString("Specialization"),
                         rs.getString("ContactInfo")
