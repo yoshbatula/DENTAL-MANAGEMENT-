@@ -1,14 +1,14 @@
 package org.example.dentalmanagement.ADMINCONTROLLER;
 
 public class DoctorsInfoData {
-    private int DoctorID;
-    private String Fullname;
+    private Integer DoctorID;
+    private String FullName;
     private String Specialization;
     private String ContactInfo;
 
-    public DoctorsInfoData(Integer DoctorID, String Fullname, String Specialization, String ContactInfo) {
+    public DoctorsInfoData(Integer DoctorID, String FullName, String Specialization, String ContactInfo) {
         this.DoctorID = DoctorID;
-        this.Fullname = Fullname;
+        this.FullName = FullName;
         this.Specialization = Specialization;
         this.ContactInfo = ContactInfo;
     }
@@ -18,7 +18,7 @@ public class DoctorsInfoData {
     }
 
     public String getFullname() {
-        return Fullname;
+        return FullName;
     }
 
     public String getSpecialization() {

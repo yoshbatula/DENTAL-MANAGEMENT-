@@ -113,7 +113,7 @@ public class DoctorsController {
             while (rs.next()) {
                 DoctorsInfoData data = new DoctorsInfoData(
                         rs.getInt("DoctorID"),
-                        rs.getString("Fullname"),
+                        rs.getString("FullName"),
                         rs.getString("Specialization"),
                         rs.getString("ContactInfo")
                 );
@@ -135,9 +135,9 @@ public class DoctorsController {
         ObservableList<DoctorsInfoData> list = DoctorsList();
 
         DoctorIDColumn.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData,Integer>("DoctorID"));
-        FullNameColumn.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData, String>("Fullname"));
-        SpecializationColumn.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData, String>("Specialization"));
-        ContactInfoColumn.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData, String>("ContactInfo"));
+        FullNameColumn.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData,String>("FullName"));
+        SpecializationColumn.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData,String>("Specialization"));
+        ContactInfoColumn.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData,String>("ContactInfo"));
 
         TablesDoctor.setItems(list);
     }
