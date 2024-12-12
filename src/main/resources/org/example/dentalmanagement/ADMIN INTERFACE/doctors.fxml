@@ -2,7 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -69,7 +70,14 @@
                   <Font name="Palatino Linotype Bold" size="16.0" />
                </font>
             </Button>
-            <TextArea fx:id="textAreaShow" editable="false" layoutX="38.0" layoutY="214.0" prefHeight="422.0" prefWidth="963.0" wrapText="true" />
+            <TableView fx:id="DoctorTable" layoutX="36.0" layoutY="213.0" prefHeight="414.0" prefWidth="967.0">
+              <columns>
+                <TableColumn fx:id="DoctorIDColumn" prefWidth="125.60000228881836" text="DoctorID" />
+                <TableColumn fx:id="FullNameColumn" prefWidth="256.00001525878906" text="FullName" />
+                  <TableColumn fx:id="SpecializationColumn" prefWidth="254.4000244140625" text="Specialization" />
+                  <TableColumn fx:id="ContactInfoColumn" prefWidth="328.800048828125" text="ContactInfo" />
+              </columns>
+            </TableView>
          </children>
       </AnchorPane>
    </children>

@@ -1,8 +1,10 @@
 package org.example.dentalmanagement.ADMINCONTROLLER;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.example.dentalmanagement.DATABASE.DATABASECONNECTIVITY;
 
 import java.sql.PreparedStatement;
@@ -55,7 +57,14 @@ public class AddDoctorController {
 
                 if (pmt.executeUpdate() > 0) {
                     System.out.println("Doctor added successfully.");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("DOCTOR");
+                    alert.setHeaderText("Doctor added successfully.");
+                    alert.setContentText("Doctor added successfully.");
+                    alert.showAndWait();
 
+                    Stage stage = (Stage) AddBTN.getScene().getWindow();
+                    stage.close();
                     if (doctorsController != null) {
                         doctorsController.loadDoctorsFromDatabase();
                     }
