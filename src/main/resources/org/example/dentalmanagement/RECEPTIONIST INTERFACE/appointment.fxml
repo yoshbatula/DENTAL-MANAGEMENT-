@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1034.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.RECEPTIONISTCONTROLLER.AppointmentController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1062.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.RECEPTIONIST_CONTROLLER.AppointmentController">
    <children>
       <AnchorPane prefHeight="731.0" prefWidth="1099.0">
          <children>
@@ -62,7 +62,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="AddressTF" layoutX="42.0" layoutY="351.0" prefHeight="30.0" prefWidth="430.0" />
-                  <Button fx:id="ProceedBTN" layoutX="42.0" layoutY="501.0" mnemonicParsing="false" onAction="#Patient" prefHeight="39.0" prefWidth="432.0" style="-fx-background-color: #081f5c;" text="PROCEED" textFill="WHITE">
+                  <Button fx:id="ProceedBTN" layoutX="42.0" layoutY="501.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="432.0" style="-fx-background-color: #081f5c;" text="PROCEED" textFill="WHITE">
                      <font>
                         <Font name="Palatino Linotype Bold" size="16.0" />
                      </font>

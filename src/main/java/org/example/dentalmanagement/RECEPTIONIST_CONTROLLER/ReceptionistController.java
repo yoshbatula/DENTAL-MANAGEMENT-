@@ -1,4 +1,4 @@
-package org.example.dentalmanagement.RECEPTIONISTCONTROLLER;
+package org.example.dentalmanagement.RECEPTIONIST_CONTROLLER;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
@@ -33,12 +32,14 @@ public class ReceptionistController implements Initializable {
     private Button RServiceBTN;
 
     @FXML
-    private StackPane container; // The container for switching views.
+    private StackPane container;
 
-    @FXML
+
+
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            switchToView("home"); // Load the default view when the application starts.
+            switchToView("home");
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
@@ -48,7 +49,6 @@ public class ReceptionistController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFileName));
         return fxmlLoader.load();
     }
-
     private void switchToView(String viewName) {
         StackPane pane = null;
         try {
@@ -85,7 +85,7 @@ public class ReceptionistController implements Initializable {
                 slideTransition.setToX(0);
 
                 fadeTransition.play();
-                slideTransition.play();
+
             }
 
         } catch (IOException e) {

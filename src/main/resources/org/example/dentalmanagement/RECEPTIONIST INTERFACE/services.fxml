@@ -61,21 +61,6 @@
                   <TableColumn editable="false" minWidth="7.33331298828125" prefWidth="227.3333740234375" sortable="false" text="SERVICE COST" />
                </columns>
             </TableView>
-            <Button layoutX="759.0" layoutY="662.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="119.0" style="-fx-background-color: #081f5c;" text="UPDATE" textFill="WHITE">
-               <font>
-                  <Font name="Palatino Linotype Bold" size="16.0" />
-               </font>
-            </Button>
-            <Button layoutX="898.0" layoutY="662.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="119.0" style="-fx-background-color: #081f5c;" text="DELETE" textFill="WHITE">
-               <font>
-                  <Font name="Palatino Linotype Bold" size="16.0" />
-               </font>
-            </Button>
-            <Button layoutX="613.0" layoutY="663.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="133.0" style="-fx-background-color: #081f5c;" text="ADD" textFill="WHITE">
-               <font>
-                  <Font name="Palatino Linotype Bold" size="16.0" />
-               </font>
-            </Button>
          </children>
       </AnchorPane>
    </children>
