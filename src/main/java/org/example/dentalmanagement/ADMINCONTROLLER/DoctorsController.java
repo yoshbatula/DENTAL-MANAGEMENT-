@@ -35,61 +35,28 @@ public class DoctorsController {
     private TextField SpecTF;
 
     @FXML
-    private TableColumn<DoctorsInfoData, String> ContactInfoColumn;
-
-    @FXML
     private TableColumn<DoctorsInfoData, Integer> DoctorIDColumn;
-
     @FXML
     private TableColumn<DoctorsInfoData, String> FullNameColumn;
-
     @FXML
     private TableColumn<DoctorsInfoData, String> SpecializationColumn;
-
+    @FXML
+    private TableColumn<DoctorsInfoData, String> ContactInfoColumn;
     @FXML
     private TableView<DoctorsInfoData> TablesDoctor;
 
-    private ObservableList<DoctorsInfoData> doctorData;
+    private ObservableList<DoctorsInfoData> doctorList = FXCollections.observableArrayList();
 
     @FXML
-    public void initialize() {
-
-        assert DoctorIDColumn != null : "fx:id 'DoctorIDColumn' was not injected: check your FXML file.";
-        assert FullNameColumn != null : "fx:id 'FullNameColumn' was not injected: check your FXML file.";
-        assert SpecializationColumn != null : "fx:id 'SpecializationColumn' was not injected: check your FXML file.";
-        assert ContactInfoColumn != null : "fx:id 'ContactInfoColumn' was not injected: check your FXML file.";
-        assert TablesDoctor != null : "fx:id 'TablesDoctor' was not injected: check your FXML file.";
-
-        doctorData = FXCollections.observableArrayList();
-
+    private void initialize() {
         DoctorIDColumn.setCellValueFactory(new PropertyValueFactory<>("doctorID"));
         FullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         SpecializationColumn.setCellValueFactory(new PropertyValueFactory<>("specialization"));
         ContactInfoColumn.setCellValueFactory(new PropertyValueFactory<>("contactInfo"));
 
-        loadDoctorsData();
-    }
+        TablesDoctor.setItems(doctorList);
 
-    public void loadDoctorsData() {
-        doctorData.clear();
-
-        DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
-        try (Statement stmt = db.getConnection().createStatement()) {
-            ResultSet rs = stmt.executeQuery("SELECT * FROM doctor");
-
-            while (rs.next()) {
-                doctorData.add(new DoctorsInfoData(
-                        rs.getInt("DoctorID"),
-                        rs.getString("FullName"),
-                        rs.getString("Specialization"),
-                        rs.getString("ContactInfo")
-                ));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        TablesDoctor.setItems(doctorData);
+        loadDoctorsFromDatabase();
     }
 
     public void SwitchToAddDoctor(ActionEvent event) throws IOException {
@@ -102,37 +69,56 @@ public class DoctorsController {
         }
     }
 
-    public void AddDoctors() {
+    public void AddDoctors(ActionEvent event) throws IOException {
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
+        String fullname = FullNameTF.getText().trim();
+        String spec = SpecTF.getText().trim();
+        String contact = ContactInfoTF.getText().trim();
 
-        String fullname = FullNameTF.getText();
-        String spec = SpecTF.getText();
-        String contact = ContactInfoTF.getText();
-
-        if (fullname.isBlank()) {
+        if (fullname.isEmpty()) {
             FullNameTF.setStyle("-fx-border-color: red");
             return;
         }
-        if (spec.isBlank()) {
+        if (spec.isEmpty()) {
             SpecTF.setStyle("-fx-border-color: red");
             return;
         }
-        if (contact.isBlank()) {
+        if (contact.isEmpty()) {
             ContactInfoTF.setStyle("-fx-border-color: red");
             return;
+        } else {
+            try {
+                PreparedStatement pmt = db.getConnection().prepareStatement("INSERT INTO doctor (FullName, Specialization, ContactInfo) VALUES (?, ?, ?)");
+                pmt.setString(1, fullname);
+                pmt.setString(2, spec);
+                pmt.setString(3, contact);
+
+                if (pmt.executeUpdate() > 0) {
+                    System.out.println("Doctor added successfully.");
+                    loadDoctorsFromDatabase();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+    }
 
-        try (PreparedStatement pmt = db.getConnection().prepareStatement(
-                "INSERT INTO doctor (FullName, Specialization, ContactInfo) VALUES (?, ?, ?)")) {
-            pmt.setString(1, fullname);
-            pmt.setString(2, spec);
-            pmt.setString(3, contact);
 
-            int rows = pmt.executeUpdate();
+    private void loadDoctorsFromDatabase() {
+        doctorList.clear();
+        DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
 
-            if (rows > 0) {
-                System.out.println("Doctor added successfully");
-                loadDoctorsData();
+        try {
+            Statement stmt = db.getConnection().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM doctor");
+
+            while (rs.next()) {
+                int id = rs.getInt("DoctorID");
+                String fullname = rs.getString("FullName");
+                String specialization = rs.getString("Specialization");
+                String contact = rs.getString("ContactInfo");
+
+                doctorList.add(new DoctorsInfoData(id, fullname, specialization, contact));
             }
         } catch (SQLException e) {
             e.printStackTrace();

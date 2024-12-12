@@ -58,7 +58,7 @@
             <TableView fx:id="TablesDoctor" layoutX="40.0" layoutY="219.0" prefHeight="405.0" prefWidth="963.0">
                <columns>
                   <TableColumn fx:id="DoctorIDColumn" editable="false" prefWidth="168.00000381469727" sortable="false" text="DOCTOR ID" />
-                  <TableColumn fx:id="FullNameColumn" editable="false" minWidth="7.33331298828125" prefWidth="367.3334503173828" sortable="false" text="FULLNAME" />
+                  <TableColumn fx:id="FullNameColumn" editable="false" minWidth="7.33331298828125" prefWidth="367.3334503173828" sortable="false" text="FULL NAME" />
                   <TableColumn fx:id="SpecializationColumn" editable="false" minWidth="7.33331298828125" prefWidth="191.333251953125" sortable="false" text="SPECIALIZATION" />
                   <TableColumn fx:id="ContactInfoColumn" editable="false" minWidth="7.33331298828125" prefWidth="234.6666259765625" sortable="false" text="CONTACT INFO" />
                </columns>
