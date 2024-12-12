@@ -34,22 +34,22 @@ public class DoctorsController {
     private TextField SpecTF;
 
 
-    @FXML
-    private TableColumn<DoctorsInfoData, String> Contact;
 
     @FXML
-    private TableColumn<DoctorsInfoData, Integer> DoctorID;
+    private TableColumn<DoctorsInfoData, String> ContactInfoColumn;
 
     @FXML
-    private TableColumn<DoctorsInfoData, String> FullName;
+    private TableColumn<DoctorsInfoData, Integer> DoctorIDColumn;
 
     @FXML
-    private TableColumn<DoctorsInfoData, String> Specialization;
+    private TableColumn<DoctorsInfoData, String> FullNameColumn;
 
     @FXML
-    private TableView<DoctorsInfoData> TableDoctor;
+    private TableColumn<DoctorsInfoData, String> SpecializationColumn;
 
-    private int DoctorsID;
+    @FXML
+    private TableView<DoctorsInfoData> TablesDoctor;
+
 
     public void SwitchToAddDoctor(ActionEvent event) throws IOException {
         if (event.getSource() == AddDoctorsBTN) {
@@ -90,9 +90,6 @@ public class DoctorsController {
 
                 if (rows > 0) {
                     System.out.println("Doctor added successfully");
-                    FullNameTF.setText("");
-                    SpecTF.setText("");
-                    ContactInfoTF.setText("");
 
                     ShowDoctorTable();
                 }
@@ -120,8 +117,14 @@ public class DoctorsController {
                         rs.getString("Specialization"),
                         rs.getString("ContactInfo")
                 );
+
+                System.out.println(data.getDoctorID());
+                System.out.println(data.getFullname());
+                System.out.println(data.getSpecialization());
+                System.out.println(data.getContactInfo());
                 list.add(data);
             }
+            return list;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -130,11 +133,12 @@ public class DoctorsController {
 
     public void ShowDoctorTable() throws SQLException {
         ObservableList<DoctorsInfoData> list = DoctorsList();
-        DoctorID.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData, Integer>("DoctorID"));
-        FullName.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData, String>("Fullname"));
-        Specialization.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData, String>("Specialization"));
-        Contact.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData, String>("ContactInfo"));
 
-        TableDoctor.setItems(list);
+        DoctorIDColumn.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData,Integer>("DoctorID"));
+        FullNameColumn.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData, String>("Fullname"));
+        SpecializationColumn.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData, String>("Specialization"));
+        ContactInfoColumn.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData, String>("ContactInfo"));
+
+        TablesDoctor.setItems(list);
     }
 }

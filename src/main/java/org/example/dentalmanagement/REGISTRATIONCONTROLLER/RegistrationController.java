@@ -121,10 +121,19 @@ public class RegistrationController {
 
               if (rows > 0) {
                   System.out.println("Succesfully Inserted");
+
+                  Stage stage = new Stage();
+                  FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/dentalmanagement/LOGIN INTERFACE/RECEPTIONIST.fxml"));
+                  Scene scene = new Scene(loader.load());
+                  stage.setScene(scene);
+                  stage.show();
+
+                  Stage window = (Stage) RegSubmit.getScene().getWindow();
+                  window.close();
               } else {
                   System.out.println("FAILED");
               }
-            } catch (SQLException e) {
+            } catch (SQLException | IOException e) {
                 e.printStackTrace();
             }
         }
