@@ -15,10 +15,7 @@ import org.example.dentalmanagement.DATABASE.DATABASECONNECTIVITY;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DoctorsController {
 
@@ -72,6 +69,8 @@ public class DoctorsController {
         String spec = SpecTF.getText();
         String contact = ContactInfoTF.getText();
 
+
+
         if (FullNameTF.getText().isBlank()) {
             FullNameTF.setStyle("-fx-border-color: red");
         } else if (ContactInfoTF.getText().isBlank()) {
@@ -106,11 +105,13 @@ public class DoctorsController {
     public ObservableList<DoctorsInfoData> DoctorsList() throws SQLException {
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
         ObservableList<DoctorsInfoData> list = FXCollections.observableArrayList();
-
+        PreparedStatement pst;
+        Connection conn = db.getConnection();
+        Statement statement;
         try {
-            Statement stmt = db.getConnection().createStatement();
-            String sql = "SELECT * FROM doctor";
-            ResultSet rs = stmt.executeQuery(sql);
+            pst = conn.prepareStatement("SELECT * FROM doctor");
+            statement = conn.createStatement();
+            ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
                 DoctorsInfoData data = new DoctorsInfoData(
@@ -129,11 +130,10 @@ public class DoctorsController {
 
     public void ShowDoctorTable() throws SQLException {
         ObservableList<DoctorsInfoData> list = DoctorsList();
-
-        DoctorID.setCellValueFactory(new PropertyValueFactory<>("DoctorID"));
-        FullName.setCellValueFactory(new PropertyValueFactory<>("Fullname"));
-        Specialization.setCellValueFactory(new PropertyValueFactory<>("Specialization"));
-        Contact.setCellValueFactory(new PropertyValueFactory<>("ContactInfo"));
+        DoctorID.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData, Integer>("DoctorID"));
+        FullName.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData, String>("Fullname"));
+        Specialization.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData, String>("Specialization"));
+        Contact.setCellValueFactory(new PropertyValueFactory<DoctorsInfoData, String>("ContactInfo"));
 
         TableDoctor.setItems(list);
     }

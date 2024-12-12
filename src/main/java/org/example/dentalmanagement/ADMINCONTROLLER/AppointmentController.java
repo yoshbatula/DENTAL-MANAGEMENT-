@@ -73,11 +73,6 @@ public class AppointmentController {
 
                 if (rows > 0) {
                     System.out.println("Succesfully inserted");
-                    FullNameTF.setText("");
-                    DateOfBirthTF.setText("");
-                    GenderTF.setText("");
-                    ContactNumberTF.setText("");
-                    AddressTF.setText("");
 
                     Statement stm = db.getConnection().createStatement();
                     String SQL = "SELECT PatientID FROM patient WHERE FullName = ?";
@@ -91,7 +86,11 @@ public class AppointmentController {
                         System.out.println("Patient ID: " + PatientID);
                         instance.setPatientID(PatientID);
                         PatientIDLabel.setText(String.valueOf(PatientID));
-
+                        FullNameTF.setText("");
+                        AddressTF.setText("");
+                        ContactNumberTF.setText("");
+                        DateOfBirthTF.setText("");
+                        GenderTF.setText("");
                     }
                 } else {
                     System.out.println("FAILED");
