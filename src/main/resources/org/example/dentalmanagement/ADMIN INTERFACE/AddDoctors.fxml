@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="376.0" prefWidth="511.0" style="-fx-background-color: #EDF1F6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.ADMINCONTROLLER.DoctorsController">
+<AnchorPane prefHeight="376.0" prefWidth="511.0" style="-fx-background-color: #EDF1F6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.ADMINCONTROLLER.AddDoctorController">
    <children>
       <Label layoutX="194.0" layoutY="37.0" prefHeight="36.0" prefWidth="169.0" text="Add Doctor" textAlignment="CENTER" textFill="#081f5c">
          <font>
