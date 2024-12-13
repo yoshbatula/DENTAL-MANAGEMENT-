@@ -42,9 +42,9 @@ public class ServicesController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         LoadServices();
-        ServiceIDColumn.setCellValueFactory(new PropertyValueFactory<>("ServiceID"));
-        ServiceNameColumn.setCellValueFactory(new PropertyValueFactory<>("ServiceName"));
-        ServiceCost.setCellValueFactory(new PropertyValueFactory<>("ServiceCost"));
+        ServiceIDColumn.setCellValueFactory(new PropertyValueFactory<>("servicesID"));
+        ServiceNameColumn.setCellValueFactory(new PropertyValueFactory<>("servicesName"));
+        ServiceCost.setCellValueFactory(new PropertyValueFactory<>("serviceCost"));
     }
 
     public void SwitchToAddServices(ActionEvent event) throws IOException {

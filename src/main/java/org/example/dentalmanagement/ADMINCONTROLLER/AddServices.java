@@ -42,11 +42,10 @@ public class AddServices {
         } else {
             try {
                 Statement st = db.getConnection().createStatement();
-                String sql = "INSERT INTO services (ServiceName, ServiceCost) VALUES (?,?,?)";
+                String sql = "INSERT INTO services (ServiceName, ServiceCost) VALUES (?,?)";
                 PreparedStatement pst = db.getConnection().prepareStatement(sql);
                 pst.setString(1, serviceName);
                 pst.setDouble(2, serviceCost);
-                pst.setString(3, serviceCost.toString());
 
                 if (pst.executeUpdate() > 0) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
