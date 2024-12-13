@@ -59,7 +59,7 @@ public class AddDoctorController {
                     System.out.println("Doctor added successfully.");
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("DOCTOR");
-                    alert.setHeaderText("Doctor added successfully.");
+                    alert.setHeaderText(null);
                     alert.setContentText("Doctor added successfully.");
                     alert.showAndWait();
 
