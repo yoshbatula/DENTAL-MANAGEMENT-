@@ -60,7 +60,7 @@
                   <TableColumn editable="false" minWidth="7.33331298828125" prefWidth="153.333251953125" sortable="false" text="APPOINTMENT DATE:" />
                   <TableColumn editable="false" minWidth="7.33331298828125" prefWidth="150.66665649414062" sortable="false" text="APPOINTMENT TIME:" />
                   <TableColumn editable="false" minWidth="7.33331298828125" prefWidth="158.0" sortable="false" text="SERVICE" />
-                  <TableColumn editable="false" minWidth="7.33331298828125" prefWidth="198.00002034505212" sortable="false" text="DOCTOR" />
+                  <TableColumn editable="false" minWidth="7.33331298828125" prefWidth="198.00002034505212" sortable="false" text="Payment Status" />
               </columns>
             </TableView>
             <Button layoutX="759.0" layoutY="662.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="119.0" style="-fx-background-color: #081f5c;" text="UPDATE" textFill="WHITE">
