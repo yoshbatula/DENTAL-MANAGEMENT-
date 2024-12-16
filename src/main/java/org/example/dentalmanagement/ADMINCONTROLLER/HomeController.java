@@ -57,6 +57,9 @@ public class HomeController implements Initializable {
     @FXML
     private Button DeleteBTN;
 
+    @FXML
+    private Button ResetBTN;
+
     public void UpdateAppointments() {
        AppointmentInfo SelectedAppointment = AppointmentTable.getSelectionModel().getSelectedItem();
 
@@ -78,9 +81,7 @@ public class HomeController implements Initializable {
 
         if (SelectedAppointment != null) {
             try {
-                Statement stmt = db.getConnection().createStatement();
-                String sql = "DELETE FROM appointment WHERE AppointmentID = ?";
-                PreparedStatement pmt = db.getConnection().prepareStatement(sql);
+                PreparedStatement pmt = db.getConnection().prepareStatement("DELETE FROM appointment WHERE AppointmentID = ?");
                 pmt.setInt(1, SelectedAppointment.getAppointmentID());
 
                 if (pmt.executeUpdate() > 0) {
@@ -90,10 +91,35 @@ public class HomeController implements Initializable {
                     alert.setContentText("APPOINTMENT DELETED");
                     alert.showAndWait();
 
+                    AppointmentList.clear();
+                    loadAppointments();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void ResetAppointments() {
+        DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
+
+        try {
+            Statement stmt = db.getConnection().createStatement();
+            String sql = "TRUNCATE TABLE appointment";
+            int rows = stmt.executeUpdate(sql);
+
+            if (rows == 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("RESET APPOINTMENT");
+                alert.setHeaderText(null);
+                alert.setContentText("RESET APPOINTMENT");
+                alert.showAndWait();
+
+                AppointmentList.clear();
+                loadAppointments();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
