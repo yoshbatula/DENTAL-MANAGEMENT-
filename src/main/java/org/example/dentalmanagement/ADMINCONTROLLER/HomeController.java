@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadAppointments();
         AppointmentIDColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
         PatientNameColumn.setCellValueFactory(new PropertyValueFactory<>("patientName"));
         AppointmentDateColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentDate"));
@@ -27,7 +28,6 @@ public class HomeController implements Initializable {
         ServiceColumn.setCellValueFactory(new PropertyValueFactory<>("service"));
         PaymentStatusColumn.setCellValueFactory(new PropertyValueFactory<>("paymentStatus"));
 
-        loadAppointments();
     }
 
 
@@ -79,7 +79,18 @@ public class HomeController implements Initializable {
         if (SelectedAppointment != null) {
             try {
                 Statement stmt = db.getConnection().createStatement();
-                String sql = "DELETE FROM appointment"
+                String sql = "DELETE FROM appointment WHERE AppointmentID = ?";
+                PreparedStatement pmt = db.getConnection().prepareStatement(sql);
+                pmt.setInt(1, SelectedAppointment.getAppointmentID());
+
+                if (pmt.executeUpdate() > 0) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("APPOINTMENT DELETED");
+                    alert.setHeaderText(null);
+                    alert.setContentText("APPOINTMENT DELETED");
+                    alert.showAndWait();
+
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }

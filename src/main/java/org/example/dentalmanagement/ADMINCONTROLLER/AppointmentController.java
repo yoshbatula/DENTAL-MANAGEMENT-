@@ -217,6 +217,7 @@ public class AppointmentController implements Initializable {
                     AppointmentTime.getSelectionModel().clearSelection();
                     AppointmentDatePicekr.setValue(null);
                     ServicesComboBox.getSelectionModel().clearSelection();
+                    PatientIDLabel.setText("");
 
                     if (homeController != null) {
                         homeController.loadAppointments();
