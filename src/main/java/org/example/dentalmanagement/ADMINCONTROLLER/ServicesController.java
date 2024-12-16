@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -107,6 +109,51 @@ public class ServicesController implements Initializable {
             );
             stage.setScene(scene);
             stage.show();
+        }
+    }
+
+    public void DeleteService() {
+        ServicesInfo selectedService = ServiceTable.getSelectionModel().getSelectedItem();
+        DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
+
+        try {
+            Statement stmt = db.getConnection().createStatement();
+            String sql = "DELETE FROM services WHERE ServiceID = ?";
+            PreparedStatement ps = db.getConnection().prepareStatement(sql);
+            ps.setInt(1, selectedService.getServicesID());
+
+
+            if (ps.executeUpdate() > 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("DELETE");
+                alert.setHeaderText(null);
+                alert.setContentText("Deleted Service successfully");
+                alert.showAndWait();
+                LoadServices();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ResetService() {
+        DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
+        try {
+            Statement stmt = db.getConnection().createStatement();
+            String sql = "TRUNCATE TABLE services";
+            int rows = stmt.executeUpdate(sql);
+
+            if (rows == 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("RESET");
+                alert.setHeaderText(null);
+                alert.setContentText("Reset Service Successfully");
+                alert.showAndWait();
+                LoadServices();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
