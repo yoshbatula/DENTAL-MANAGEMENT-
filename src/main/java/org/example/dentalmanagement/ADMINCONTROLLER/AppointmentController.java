@@ -116,7 +116,7 @@ public class AppointmentController implements Initializable {
 
                     while (rs.next()) {
                         System.out.println(rs.getString("PatientID"));
-                        int PatientID = rs.getInt("PatientID");
+                        PatientID = rs.getInt("PatientID");
                         System.out.println("Patient ID: " + PatientID);
                         instance.setPatientID(PatientID);
                         PatientIDLabel.setText(String.valueOf(PatientID));
@@ -136,6 +136,73 @@ public class AppointmentController implements Initializable {
         }
     }
 
+    private int DoctorID;
+    private int ServiceID;
+    private int PatientID;
+
+    public void AddAppointment() {
+        Singleton instance = Singleton.getInstance();
+        DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
+        String SelectedDoctors = DoctorComboBox.getSelectionModel().getSelectedItem();
+        String SelectedTime = AppointmentTime.getSelectionModel().getSelectedItem();
+        LocalDate SelectedDate = AppointmentDatePicekr.getValue();
+        String SelectedServices = ServicesComboBox.getSelectionModel().getSelectedItem();
+
+        if (DoctorComboBox.getItems().isEmpty()) {
+            DoctorComboBox.setStyle("-fx-border-color: red");
+        } if (AppointmentDatePicekr.getChronology().isIsoBased()) {
+            AppointmentDatePicekr.setStyle("-fx-border-color: red");
+        } if (ServicesComboBox.getItems().isEmpty()) {
+            ServicesComboBox.setStyle("-fx-border-color: red");
+        } if (AppointmentTime.getItems().isEmpty()) {
+            AppointmentTime.setStyle("-fx-border-color: red");
+        } else {
+            try {
+                Statement smt = db.getConnection().createStatement();
+                String sql = "SELECT DoctorID FROM doctor WHERE FullName = ?";
+                PreparedStatement psmt = db.getConnection().prepareStatement(sql);
+                psmt.setString(1, SelectedDoctors);
+                ResultSet rs = psmt.executeQuery();
+
+                while (rs.next()) {
+                    System.out.println("DoctorID");
+                    DoctorID = rs.getInt("DoctorID");
+                    instance.setDoctorID(DoctorID);
+                }
+
+                String SQL = "SELECT ServiceID FROM services WHERE ServiceName = ?";
+                psmt = db.getConnection().prepareStatement(SQL);
+                psmt.setString(1, SelectedServices);
+                rs = psmt.executeQuery();
+
+                while (rs.next()) {
+                    System.out.println("ServiceID");
+                    ServiceID = rs.getInt("ServiceID");
+                    instance.setServiceID(ServiceID);
+                }
+
+                String insert = "INSERT INTO appointment (PatientID,DoctorID,ServiceID,AppointmentDate,AppointmentTime) VALUES (?,?,?,?,?)";
+                psmt = db.getConnection().prepareStatement(insert);
+                psmt.setInt(1, PatientID);
+                psmt.setInt(2, DoctorID);
+                psmt.setInt(3, ServiceID);
+                psmt.setDate(4, Date.valueOf(SelectedDate));
+                psmt.setString(5, SelectedTime);
+
+                int rowsaffected = psmt.executeUpdate();
+
+                if (rowsaffected > 0) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("ADDING PATIENTS");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Added");
+                    alert.showAndWait();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     public void Doctors() {
         this.DoctorNames = new ArrayList<>();
 
@@ -176,4 +243,6 @@ public class AppointmentController implements Initializable {
             e.printStackTrace();
         }
     }
+
+
 }

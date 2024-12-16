@@ -4,6 +4,24 @@ public class Singleton {
 
     private static Singleton instance;
     private int PatientID;
+    private int DoctorID;
+    private int ServiceID;
+
+    public int getDoctorID() {
+        return DoctorID;
+    }
+
+    public void setDoctorID(int doctorID) {
+        DoctorID = doctorID;
+    }
+
+    public int getServiceID() {
+        return ServiceID;
+    }
+
+    public void setServiceID(int serviceID) {
+        ServiceID = serviceID;
+    }
 
     private Singleton() {
     }
