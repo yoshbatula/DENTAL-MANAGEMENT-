@@ -71,6 +71,12 @@ public class AppointmentController implements Initializable {
 
     private ObservableList<String> Time = FXCollections.observableArrayList("9:00am", "10:00am", "11:00am", "12:00pm", "1:00pm", "2:00pm", "3:00pm", "4:00pm", "5:00pm", "6:00pm");
 
+    private HomeController homeController;
+
+    public void setHomeController(HomeController homeController) {
+        this.homeController = homeController;
+    }
+
     public void Patient() {
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
         Singleton instance = Singleton.getInstance();
@@ -176,6 +182,7 @@ public class AppointmentController implements Initializable {
                 while (rs.next()) {
                     DoctorID = rs.getInt("DoctorID");
                     instance.setDoctorID(DoctorID);
+                    System.out.println("DoctorID" + DoctorID);
                 }
 
                 String SQL = "SELECT ServiceID FROM services WHERE ServiceName = ?";
@@ -186,6 +193,7 @@ public class AppointmentController implements Initializable {
                 while (rs.next()) {
                     ServiceID = rs.getInt("ServiceID");
                     instance.setServiceID(ServiceID);
+                    System.out.println("ServiceID" + ServiceID);
                 }
 
                 String insert = "INSERT INTO appointment (PatientID, DoctorID, ServiceID, AppointmentDate, AppointmentTime) VALUES (?,?,?,?,?)";
@@ -204,6 +212,15 @@ public class AppointmentController implements Initializable {
                     alert.setHeaderText(null);
                     alert.setContentText("Successfully Added");
                     alert.showAndWait();
+
+                    DoctorComboBox.getSelectionModel().clearSelection();
+                    AppointmentTime.getSelectionModel().clearSelection();
+                    AppointmentDatePicekr.setValue(null);
+                    ServicesComboBox.getSelectionModel().clearSelection();
+
+                    if (homeController != null) {
+                        homeController.loadAppointments();
+                    }
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

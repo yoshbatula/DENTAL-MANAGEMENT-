@@ -48,6 +48,7 @@ public class AdminController implements Initializable {
         return fxmlLoader.load();
     }
 
+
     private void switchToView(String viewName) {
         StackPane pane = null;
         try {
