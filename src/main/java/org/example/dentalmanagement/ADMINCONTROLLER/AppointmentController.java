@@ -18,7 +18,8 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import static java.sql.Date.valueOf;
@@ -150,14 +151,22 @@ public class AppointmentController implements Initializable {
 
         if (DoctorComboBox.getItems().isEmpty()) {
             DoctorComboBox.setStyle("-fx-border-color: red");
-        } if (AppointmentDatePicekr.getChronology().isIsoBased()) {
+        }
+        if (AppointmentDatePicekr.getValue() == null) {
             AppointmentDatePicekr.setStyle("-fx-border-color: red");
-        } if (ServicesComboBox.getItems().isEmpty()) {
+        }
+        if (ServicesComboBox.getItems().isEmpty()) {
             ServicesComboBox.setStyle("-fx-border-color: red");
-        } if (AppointmentTime.getItems().isEmpty()) {
+        }
+        if (AppointmentTime.getItems().isEmpty()) {
             AppointmentTime.setStyle("-fx-border-color: red");
         } else {
             try {
+                DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("h:mma");
+                DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+                LocalTime formattedTime = LocalTime.parse(SelectedTime.toUpperCase(), inputFormatter);
+                String convertedTime = formattedTime.format(outputFormatter);
+
                 Statement smt = db.getConnection().createStatement();
                 String sql = "SELECT DoctorID FROM doctor WHERE FullName = ?";
                 PreparedStatement psmt = db.getConnection().prepareStatement(sql);
@@ -165,7 +174,6 @@ public class AppointmentController implements Initializable {
                 ResultSet rs = psmt.executeQuery();
 
                 while (rs.next()) {
-                    System.out.println("DoctorID");
                     DoctorID = rs.getInt("DoctorID");
                     instance.setDoctorID(DoctorID);
                 }
@@ -176,24 +184,23 @@ public class AppointmentController implements Initializable {
                 rs = psmt.executeQuery();
 
                 while (rs.next()) {
-                    System.out.println("ServiceID");
                     ServiceID = rs.getInt("ServiceID");
                     instance.setServiceID(ServiceID);
                 }
 
-                String insert = "INSERT INTO appointment (PatientID,DoctorID,ServiceID,AppointmentDate,AppointmentTime) VALUES (?,?,?,?,?)";
+                String insert = "INSERT INTO appointment (PatientID, DoctorID, ServiceID, AppointmentDate, AppointmentTime) VALUES (?,?,?,?,?)";
                 psmt = db.getConnection().prepareStatement(insert);
                 psmt.setInt(1, PatientID);
                 psmt.setInt(2, DoctorID);
                 psmt.setInt(3, ServiceID);
                 psmt.setDate(4, Date.valueOf(SelectedDate));
-                psmt.setString(5, SelectedTime);
+                psmt.setString(5, convertedTime);
 
                 int rowsaffected = psmt.executeUpdate();
 
                 if (rowsaffected > 0) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("ADDING PATIENTS");
+                    alert.setTitle("ADDING APPOINTMENT");
                     alert.setHeaderText(null);
                     alert.setContentText("Successfully Added");
                     alert.showAndWait();
