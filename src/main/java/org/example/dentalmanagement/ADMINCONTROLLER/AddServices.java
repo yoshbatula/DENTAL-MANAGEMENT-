@@ -56,7 +56,15 @@ public class AddServices {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("INFORMATION");
                     alert.setHeaderText(null);
+                    alert.setContentText(UpdateServices ? "Services update successfully." : "Services add successfully.");
+                    alert.showAndWait();
 
+                    Stage stage = (Stage) ProceedBTN.getScene().getWindow();
+                    stage.close();
+
+                    if (servicesController != null) {
+                        servicesController.LoadServices();
+                    }
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
