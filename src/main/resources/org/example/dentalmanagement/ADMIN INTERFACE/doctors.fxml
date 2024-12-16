@@ -33,7 +33,7 @@
                   </ImageView>
                   <Line endX="-139.22222900390625" endY="0.459564208984375" layoutX="515.0" layoutY="130.0" startX="-244.39926147460938" startY="0.4595700800418854" />
                   <Line endX="-139.22222900390625" endY="0.459564208984375" layoutX="372.0" layoutY="130.0" startX="-244.39926147460938" startY="0.4595700800418854" />
-                  <Button fx:id="ResetBTN" layoutX="875.0" layoutY="143.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="119.0" style="-fx-background-color: #081f5c;" text="RESET" textFill="WHITE">
+                  <Button fx:id="ResetBTN" layoutX="875.0" layoutY="143.0" mnemonicParsing="false" onAction="#ResetDoctor" prefHeight="39.0" prefWidth="119.0" style="-fx-background-color: #081f5c;" text="RESET" textFill="WHITE">
                      <font>
                         <Font name="Palatino Linotype Bold" size="16.0" />
                      </font>

@@ -154,10 +154,10 @@ public class DoctorsController {
 
         try {
             Statement stmt = db.getConnection().createStatement();
-            String sql = "DELETE FROM doctor";
+            String sql = "TRUNCATE TABLE doctor";
             int rows = stmt.executeUpdate(sql);
 
-            if (rows > 0) {
+            if (rows >= 0) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("RESET");
                 alert.setHeaderText(null);
