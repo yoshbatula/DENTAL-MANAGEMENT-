@@ -35,6 +35,8 @@ public class AddDoctorController implements Initializable {
 
     private boolean isUpdateMode = false;
 
+    private int doctorID;
+
     public void setDoctorsController(DoctorsController doctorsController) {
         this.doctorsController = doctorsController;
     }
@@ -57,12 +59,12 @@ public class AddDoctorController implements Initializable {
             PreparedStatement pmt;
             if (isUpdateMode) {
                 pmt = db.getConnection().prepareStatement(
-                        "UPDATE doctor SET FullName = ?, Specialization = ?, ContactInfo = ? WHERE FullName = ?"
+                        "UPDATE doctor SET FullName = ?, Specialization = ?, ContactInfo = ? WHERE DoctorID = ?"
                 );
                 pmt.setString(1, fullname);
                 pmt.setString(2, spec);
                 pmt.setString(3, contact);
-                pmt.setInt(4, fullname.length());
+                pmt.setInt(4, doctorID);
             } else {
                 pmt = db.getConnection().prepareStatement(
                         "INSERT INTO doctor (FullName, Specialization, ContactInfo) VALUES (?, ?, ?)"
@@ -91,7 +93,10 @@ public class AddDoctorController implements Initializable {
     }
 
 
-    public void setDoctorData(String fullName, String specialization, String contactInfo) {
+    public void setDoctorData(int doctorID, String fullName, String specialization, String contactInfo) {
+        this.isUpdateMode = true;
+        this.doctorID = doctorID;
+
         FullNameTF.setText(fullName);
         SpecTF.setText(specialization);
         ContactInfoTF.setText(contactInfo);

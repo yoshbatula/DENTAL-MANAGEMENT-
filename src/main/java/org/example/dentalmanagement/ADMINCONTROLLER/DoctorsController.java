@@ -40,6 +40,12 @@ public class DoctorsController {
     private Button UpdateBTN;
 
     @FXML
+    private Button DeleteBTN;
+
+    @FXML
+    private Button ResetBTN;
+
+    @FXML
     private void initialize() {
         if (DoctorTable == null) {
             System.out.println("DoctorTable is null!");
@@ -105,6 +111,7 @@ public class DoctorsController {
                 AddDoctorController addDoctorController = fxmlLoader.getController();
                 addDoctorController.setDoctorsController(this);
                 addDoctorController.setDoctorData(
+                        SelectedDoctor.getDoctorID(),
                         SelectedDoctor.getFullName(),
                         SelectedDoctor.getSpecialization(),
                         SelectedDoctor.getContactInfo()
@@ -115,4 +122,51 @@ public class DoctorsController {
         }
     }
 
+    public void DeleteDoctor() {
+        DoctorsInfoData SelectedDoctor = DoctorTable.getSelectionModel().getSelectedItem();
+        DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
+
+        if (SelectedDoctor != null) {
+            try {
+                Statement smt = db.getConnection().createStatement();
+                String sql = "DELETE FROM doctor WHERE DoctorID = ?";
+                PreparedStatement pmt = db.getConnection().prepareStatement(sql);
+                pmt.setInt(1, SelectedDoctor.getDoctorID());
+
+                int rows = pmt.executeUpdate();
+
+                if (rows > 0) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("DELETE");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Doctor deleted successfully");
+                    alert.showAndWait();
+                    loadDoctorsFromDatabase();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void ResetDoctor() {
+        DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
+
+        try {
+            Statement stmt = db.getConnection().createStatement();
+            String sql = "DELETE FROM doctor";
+            int rows = stmt.executeUpdate(sql);
+
+            if (rows > 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("RESET");
+                alert.setHeaderText(null);
+                alert.setContentText("Doctor reset successfully");
+                alert.showAndWait();
+                loadDoctorsFromDatabase();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
