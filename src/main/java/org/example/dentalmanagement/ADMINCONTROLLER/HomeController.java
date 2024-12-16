@@ -2,18 +2,19 @@ package org.example.dentalmanagement.ADMINCONTROLLER;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.dentalmanagement.DATABASE.DATABASECONNECTIVITY;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -53,6 +54,37 @@ public class HomeController implements Initializable {
 
     private ObservableList<AppointmentInfo> AppointmentList = FXCollections.observableArrayList();
 
+    @FXML
+    private Button DeleteBTN;
+
+    public void UpdateAppointments() {
+       AppointmentInfo SelectedAppointment = AppointmentTable.getSelectionModel().getSelectedItem();
+
+       if (SelectedAppointment != null) {
+           FXMLLoader fxml = new FXMLLoader(getClass().getResource("/org/example/dentalmanagement/ADMIN INTERFACE/appointment.fxml"));
+           AppointmentController appointmentController = fxml.getController();
+           appointmentController.setHomeController(this);
+           Alert alert = new Alert(Alert.AlertType.INFORMATION);
+           alert.setTitle("GO TO APPOINTMENT");
+           alert.setHeaderText(null);
+           alert.setContentText("GO TO ADD APPOINTMENT");
+           alert.showAndWait();
+       }
+    }
+
+    public void DeleteAppointment() {
+        DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
+        AppointmentInfo SelectedAppointment = AppointmentTable.getSelectionModel().getSelectedItem();
+
+        if (SelectedAppointment != null) {
+            try {
+                Statement stmt = db.getConnection().createStatement();
+                String sql = "DELETE FROM appointment"
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public void loadAppointments() {
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
