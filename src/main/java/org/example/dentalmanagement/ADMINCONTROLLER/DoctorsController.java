@@ -37,6 +37,9 @@ public class DoctorsController {
     private ObservableList<DoctorsInfoData> doctorList = FXCollections.observableArrayList();
 
     @FXML
+    private Button UpdateBTN;
+
+    @FXML
     private void initialize() {
         if (DoctorTable == null) {
             System.out.println("DoctorTable is null!");
@@ -88,6 +91,27 @@ public class DoctorsController {
 
             stage.setScene(scene);
             stage.show();
+        }
+    }
+
+    public void UpdateDoctors(ActionEvent event) throws IOException {
+        if (event.getSource() == UpdateBTN) {
+            DoctorsInfoData SelectedDoctor = DoctorTable.getSelectionModel().getSelectedItem();
+
+            if (SelectedDoctor != null) {
+                Stage stage = new Stage();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/dentalmanagement/ADMIN INTERFACE/AddDoctors.fxml"));
+                Scene scene = new Scene(fxmlLoader.load());
+                AddDoctorController addDoctorController = fxmlLoader.getController();
+                addDoctorController.setDoctorsController(this);
+                addDoctorController.setDoctorData(
+                        SelectedDoctor.getFullName(),
+                        SelectedDoctor.getSpecialization(),
+                        SelectedDoctor.getContactInfo()
+                );
+                stage.setScene(scene);
+                stage.show();
+            }
         }
     }
 
