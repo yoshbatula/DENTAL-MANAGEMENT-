@@ -41,29 +41,38 @@ public class AddServices {
             ServiceCostTF.setStyle("-fx-border-color: red");
         } else {
             try {
-                Statement st = db.getConnection().createStatement();
-                String sql = "INSERT INTO services (ServiceName, ServiceCost) VALUES (?,?)";
-                PreparedStatement pst = db.getConnection().prepareStatement(sql);
-                pst.setString(1, serviceName);
-                pst.setDouble(2, serviceCost);
+                PreparedStatement pmt;
 
-                if (pst.executeUpdate() > 0) {
+                if (UpdateServices) {
+                    pmt = db.getConnection().prepareStatement("UPDATE services SET ServiceName = ?, ServiceCost = ? WHERE ServiceID = ?");
+                    pmt.setString(1, serviceName);
+                    pmt.setDouble(2, serviceCost);
+                    pmt.setInt(3, ServiceID);
+                } else {
+                    pmt = db.getConnection().prepareStatement("INSERT INTO services(ServiceName, ServiceCost) VALUES (?, ?)");
+                    pmt.setString(1, serviceName);
+                    pmt.setDouble(2, serviceCost);
+                } if (pmt.executeUpdate() > 0) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("INFORMATION");
                     alert.setHeaderText(null);
-                    alert.setContentText("Service Added Successfully");
-                    alert.showAndWait();
 
-                    Stage stage = (Stage) ProceedBTN.getScene().getWindow();
-                    stage.close();
-
-                    if (servicesController != null) {
-                        servicesController.LoadServices();
-                    }
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private Integer ServiceID;
+    private Boolean UpdateServices = false;
+
+    public void setServicesData(Integer servicesID, String servicesName, Double serviceCost) {
+        this.ServiceID = servicesID;
+        this.UpdateServices = true;
+
+        this.ServiceNameTF.setText(servicesName);
+        this.ServiceCostTF.setText(Double.toString(serviceCost));
+
     }
 }

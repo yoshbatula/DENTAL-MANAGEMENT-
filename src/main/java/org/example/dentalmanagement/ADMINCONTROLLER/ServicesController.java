@@ -38,6 +38,12 @@ public class ServicesController implements Initializable {
 
     private ObservableList<ServicesInfo> Services = FXCollections.observableArrayList();
 
+    @FXML
+    private Button DeleteBTN;
+
+    @FXML
+    private Button ResetBTN;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -82,6 +88,25 @@ public class ServicesController implements Initializable {
             ServiceTable.setItems(Services);
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void UpdateServices(ActionEvent event) throws IOException {
+        ServicesInfo SelectedServices = ServiceTable.getSelectionModel().getSelectedItem();
+
+        if (SelectedServices != null) {
+            Stage stage = new Stage();
+            FXMLLoader fxml = new FXMLLoader(getClass().getResource("/org/example/dentalmanagement/ADMIN INTERFACE/AddServices.fxml"));
+            Scene scene = new Scene(fxml.load());
+            AddServices addServices = fxml.getController();
+            addServices.setServicesController(this);
+            addServices.setServicesData(
+                    SelectedServices.getServicesID(),
+                    SelectedServices.getServicesName(),
+                    SelectedServices.getServiceCost()
+            );
+            stage.setScene(scene);
+            stage.show();
         }
     }
 }
