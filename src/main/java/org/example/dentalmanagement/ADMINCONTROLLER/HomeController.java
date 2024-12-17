@@ -167,9 +167,12 @@ public class HomeController implements Initializable {
     public void loadAppointments() {
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
         Singleton instance = Singleton.getInstance();
+
         try {
             Connection conn = db.getConnection();
-            String query = "SELECT a.AppointmentID, p.FullName, a.AppointmentDate, a.AppointmentTime, s.ServiceName " +
+
+            String query = "SELECT a.AppointmentID, p.FullName, a.AppointmentDate, a.AppointmentTime, " +
+                    "s.ServiceName, s.ServiceCost " +
                     "FROM appointment a " +
                     "JOIN patient p ON a.PatientID = p.PatientID " +
                     "JOIN services s ON a.ServiceID = s.ServiceID";
@@ -178,28 +181,20 @@ public class HomeController implements Initializable {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                appointmentID = rs.getInt("AppointmentID");
-                patientName = rs.getString("FullName");
-                appointmentDate = rs.getString("AppointmentDate");
-                appointmentTime = rs.getString("AppointmentTime");
-                service = rs.getString("ServiceName");
+                int appointmentID = rs.getInt("AppointmentID");
+                String patientName = rs.getString("FullName");
+                String appointmentDate = rs.getString("AppointmentDate");
+                String appointmentTime = rs.getString("AppointmentTime");
+                String service = rs.getString("ServiceName");
+                servicecost = rs.getDouble("ServiceCost");
+
                 String paymentStatus = "Pending";
 
-
-                AppointmentList.add(new AppointmentInfo(appointmentID, patientName, appointmentDate, appointmentTime, service, paymentStatus));
-            }
-
-            String sql = "SELECT ServiceCost, ServiceName FROM services WHERE ServiceName = ?";
-            PreparedStatement pmt = db.getConnection().prepareStatement(sql);
-            pmt.setString(1, service);
-            rs = pmt.executeQuery();
-
-            while (rs.next()) {
-                servicecost = rs.getDouble("ServiceCost");
-                service = rs.getString("ServiceName");
+                AppointmentList.add(new AppointmentInfo(appointmentID, patientName, appointmentDate,
+                        appointmentTime, service, paymentStatus));
 
                 instance.setServiceCosts(servicecost);
-                System.out.println(servicecost);
+                System.out.println("Service Cost for " + service + ": " + servicecost);
             }
 
             AppointmentTable.setItems(AppointmentList);
