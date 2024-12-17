@@ -10,6 +10,7 @@ import org.example.dentalmanagement.DATABASE.DATABASECONNECTIVITY;
 
 import java.net.URL;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
@@ -73,29 +74,51 @@ public class PaymentController implements Initializable {
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
 
         try {
-            Statement smt = db.getConnection().createStatement();
-            String sql = "INSERT INTO payment (AppointmentID,PatientID,PaymentStatus,Amount) VALUES (?,?,?,?)";
+
+            String fetchPatientID = "SELECT PatientID FROM patient WHERE FullName = ?";
+            PreparedStatement fetchPstmt = db.getConnection().prepareStatement(fetchPatientID);
+            fetchPstmt.setString(1, appoinmentName);
+            ResultSet rs = fetchPstmt.executeQuery();
+
+            if (rs.next()) {
+                this.PatientID = rs.getInt("PatientID");
+            } else {
+                showErrorAlert("Error", "Patient not found. Please check the patient's name.");
+                return;
+            }
+
+            String sql = "INSERT INTO payment (AppointmentID, PatientID, PaymentStatus, Amount) VALUES (?, ?, ?, ?)";
             PreparedStatement psmt = db.getConnection().prepareStatement(sql);
             psmt.setInt(1, appoinmentID);
             psmt.setInt(2, PatientID);
             psmt.setString(3, paymentStatus);
             psmt.setDouble(4, ServiceCost);
 
-            int rows  = psmt.executeUpdate();
+            int rows = psmt.executeUpdate();
 
             if (rows > 0) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Payment Method");
                 alert.setHeaderText(null);
-                alert.setContentText("Payment Method successfully");
+                alert.setContentText("Payment successfully processed.");
                 alert.showAndWait();
 
                 Stage stage = (Stage) PaymentBTN.getScene().getWindow();
                 stage.close();
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
+            showErrorAlert("Database Error", "An error occurred while processing payment.");
         }
+    }
+
+    private void showErrorAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 }
