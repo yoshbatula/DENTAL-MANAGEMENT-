@@ -69,17 +69,19 @@ public class PaymentController implements Initializable {
         Singleton instance = Singleton.getInstance();
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
         try {
-            Statement smt = db.getConnection().createStatement();
             String sql = "SELECT ServiceCost FROM services WHERE ServiceName = ?";
             PreparedStatement pmt = db.getConnection().prepareStatement(sql);
             pmt.setString(1, service);
-            ResultSet rs = pmt.executeQuery(sql);
 
-            while (rs.next()) {
-                System.out.println(rs.getString("ServiceCost"));
+            ResultSet rs = pmt.executeQuery();
+
+            if (rs.next()) {
                 ServiceCost = rs.getDouble("ServiceCost");
-                ServiceCost = instance.getServiceCosts();
+                service = rs.getString("ServiceName");
+                instance.setServiceCosts(ServiceCost);
                 System.out.println("SERVICE COST " + ServiceCost);
+            } else {
+                System.out.println("No service cost found for: " + service);
             }
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -88,6 +90,7 @@ public class PaymentController implements Initializable {
             alert.setContentText("Payment Method");
             alert.showAndWait();
 
+            // Clear the labels
             AppointmentIDLabel.setText("");
             PatientNameLabel.setText("");
             AppointmentDateLabel.setText("");
@@ -95,8 +98,6 @@ public class PaymentController implements Initializable {
             ServiceCostLabel.setText("");
             ServiceLabel.setText("");
             TotalLabel.setText("");
-
-
 
         } catch (SQLException e) {
             e.printStackTrace();
