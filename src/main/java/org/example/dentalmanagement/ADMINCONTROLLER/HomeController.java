@@ -75,7 +75,7 @@ public class HomeController implements Initializable {
             Scene scene = new Scene(fxml.load());
 
             PaymentController paymentMethod = fxml.getController();
-            paymentMethod.setData(appointmentID, patientName,appointmentDate,appointmentTime,service,PatientID);
+            paymentMethod.setData(appointmentID, patientName,appointmentDate,appointmentTime,service,PatientID,servicecost);
             stage.setScene(scene);
             stage.show();
         }
@@ -149,10 +149,11 @@ public class HomeController implements Initializable {
     private String appointmentDate;
     private String appointmentTime;
     private String service;
+    private Double servicecost;
 
     public void loadAppointments() {
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
-
+        Singleton instance = Singleton.getInstance();
         try {
             Connection conn = db.getConnection();
             String query = "SELECT a.AppointmentID, p.FullName, a.AppointmentDate, a.AppointmentTime, s.ServiceName " +
@@ -173,6 +174,19 @@ public class HomeController implements Initializable {
 
 
                 AppointmentList.add(new AppointmentInfo(appointmentID, patientName, appointmentDate, appointmentTime, service, paymentStatus));
+            }
+
+            String sql = "SELECT ServiceCost, ServiceName FROM services WHERE ServiceName = ?";
+            PreparedStatement pmt = db.getConnection().prepareStatement(sql);
+            pmt.setString(1, service);
+            rs = pmt.executeQuery();
+
+            while (rs.next()) {
+                servicecost = rs.getDouble("ServiceCost");
+                service = rs.getString("ServiceName");
+
+                instance.setServiceCosts(servicecost);
+
             }
 
             AppointmentTable.setItems(AppointmentList);

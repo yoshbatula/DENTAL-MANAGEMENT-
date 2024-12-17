@@ -44,73 +44,31 @@ public class PaymentController implements Initializable {
     private Label TotalLabel;
 
 
-    public void setData(int appointmentID, String patientName, String appointmentDate, String appointmentTime, String service, int patientID) {
+    public void setData(int appointmentID, String patientName, String appointmentDate, String appointmentTime, String service, int patientID, Double servicecost) {
         this.appoinmentID = appointmentID;
         this.appoinmentName = patientName;
         this.service = service;
         this.PatientID = patientID;
+        this.ServiceCost = servicecost;
 
         AppointmentIDLabel.setText(String.valueOf(appointmentID));
         PatientNameLabel.setText(patientName);
         ServiceLabel.setText(service);
-        ServiceCostLabel.setText(String.valueOf(ServiceCost));
-        TotalLabel.setText(String.valueOf(ServiceCost));
+        ServiceCostLabel.setText(servicecost.toString());
+        TotalLabel.setText(servicecost.toString());
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        // Initialization if needed
     }
 
     public void PaymentMethod() {
         Singleton instance = Singleton.getInstance();
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
-        try {
-            String sql = "SELECT ServiceCost, ServiceName FROM services WHERE ServiceName = ?";
-            PreparedStatement pmt = db.getConnection().prepareStatement(sql);
-            pmt.setString(1, service);
-
-            ResultSet rs = pmt.executeQuery();
-
-            if (rs.next()) {
-                ServiceCost = rs.getDouble("ServiceCost");
-                service = rs.getString("ServiceName");
-                instance.setServiceCosts(ServiceCost);
-                System.out.println("SERVICE COST: " + ServiceCost);
-                System.out.println("SERVICE NAME: " + service);
-            } else {
-                System.out.println("No service found for: " + service);
-                return;
-            }
-
-            String query = "SELECT PatientID FROM patient WHERE FullName = ?";
-            pmt = db.getConnection().prepareStatement(query);
-            pmt.setString(1, appoinmentName);
 
 
-            ResultSet patientRs = pmt.executeQuery();
-            if (patientRs.next()) {
-                PatientID = patientRs.getInt("PatientID");
-                instance.setPatientID(PatientID);
-                System.out.println("PATIENT ID: " + PatientID);
-            } else {
-                System.out.println("No patient found with name: " + appoinmentName);
-            }
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("DONE PAYING");
-            alert.setHeaderText(null);
-            alert.setContentText("Payment Method");
-            alert.showAndWait();
-
-
-            AppointmentIDLabel.setText("");
-            PatientNameLabel.setText("");
-            ServiceCostLabel.setText("");
-            ServiceLabel.setText("");
-            TotalLabel.setText("");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
+
+mm
 }
