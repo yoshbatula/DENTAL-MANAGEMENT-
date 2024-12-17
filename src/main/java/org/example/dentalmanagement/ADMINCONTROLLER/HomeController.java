@@ -80,9 +80,9 @@ public class HomeController implements Initializable {
                     SelectedAppointment.getAppointmentID(),
                     SelectedAppointment.getPatientName(),
                     SelectedAppointment.getService(),
-                    servicecost
+                    SelectedAppointment.getServiceCost()
             );
-
+            paymentMethod.setData(this);
             stage.setScene(scene);
             stage.show();
         } else {
@@ -134,28 +134,34 @@ public class HomeController implements Initializable {
         }
     }
 
+
     public void ResetAppointments() {
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
 
-        try {
-            Statement stmt = db.getConnection().createStatement();
-            String sql = "TRUNCATE TABLE appointment";
-            int rows = stmt.executeUpdate(sql);
+        try (Connection conn = db.getConnection()) {
 
-            if (rows == 0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("RESET APPOINTMENT");
-                alert.setHeaderText(null);
-                alert.setContentText("RESET APPOINTMENT");
-                alert.showAndWait();
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate("TRUNCATE TABLE appointment");
 
-                AppointmentList.clear();
-                loadAppointments();
-            }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("RESET APPOINTMENT");
+            alert.setHeaderText(null);
+            alert.setContentText("All appointments have been reset successfully.");
+            alert.showAndWait();
+
+            AppointmentList.clear();
+            loadAppointments();
+
         } catch (SQLException e) {
             e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Error");
+            errorAlert.setHeaderText("Database Error");
+            errorAlert.setContentText("Failed to reset appointments: " + e.getMessage());
+            errorAlert.showAndWait();
         }
     }
+
     private int PatientID;
     private int appointmentID;
     private String patientName;
@@ -166,20 +172,24 @@ public class HomeController implements Initializable {
 
     public void loadAppointments() {
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
-        Singleton instance = Singleton.getInstance();
 
-        try {
-            Connection conn = db.getConnection();
 
-            String query = "SELECT a.AppointmentID, p.FullName, a.AppointmentDate, a.AppointmentTime, " +
-                    "s.ServiceName, s.ServiceCost " +
-                    "FROM appointment a " +
-                    "JOIN patient p ON a.PatientID = p.PatientID " +
-                    "JOIN services s ON a.ServiceID = s.ServiceID";
+        AppointmentList.clear();
 
-            PreparedStatement stmt = conn.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
+        String query = "SELECT a.AppointmentID, p.FullName, a.AppointmentDate, a.AppointmentTime, " +
+                "s.ServiceName, s.ServiceCost, IFNULL(pay.PaymentStatus, 'Pending') AS PaymentStatus " +
+                "FROM appointment a " +
+                "JOIN patient p ON a.PatientID = p.PatientID " +
+                "JOIN services s ON a.ServiceID = s.ServiceID " +
+                "LEFT JOIN payment pay ON a.AppointmentID = pay.AppointmentID";
 
+        try (
+                Connection conn = db.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query);
+                ResultSet rs = stmt.executeQuery()
+
+        ) {
+            AppointmentList.clear();
             while (rs.next()) {
                 int appointmentID = rs.getInt("AppointmentID");
                 String patientName = rs.getString("FullName");
@@ -187,20 +197,19 @@ public class HomeController implements Initializable {
                 String appointmentTime = rs.getString("AppointmentTime");
                 String service = rs.getString("ServiceName");
                 servicecost = rs.getDouble("ServiceCost");
+                String paymentStatus = rs.getString("PaymentStatus");
 
-                String paymentStatus = "Pending";
-
-                AppointmentList.add(new AppointmentInfo(appointmentID, patientName, appointmentDate,
-                        appointmentTime, service, paymentStatus));
-
-                instance.setServiceCosts(servicecost);
-                System.out.println("Service Cost for " + service + ": " + servicecost);
+                AppointmentList.add(new AppointmentInfo(
+                        appointmentID, patientName, appointmentDate,
+                        appointmentTime, service, paymentStatus, servicecost
+                ));
             }
 
             AppointmentTable.setItems(AppointmentList);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 }

@@ -64,6 +64,12 @@ public class PaymentController implements Initializable {
         TotalLabel.setText(serviceCost.toString());
     }
 
+    private HomeController homeController;
+
+    public void setHomeController(HomeController homeController) {
+        this.homeController = homeController;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -74,7 +80,7 @@ public class PaymentController implements Initializable {
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
 
         try {
-            // Fetch PatientID using Patient's Name
+
             String fetchPatientID = "SELECT PatientID FROM patient WHERE FullName = ?";
             PreparedStatement fetchPstmt = db.getConnection().prepareStatement(fetchPatientID);
             fetchPstmt.setString(1, appoinmentName);
@@ -98,7 +104,7 @@ public class PaymentController implements Initializable {
 
             if (rows > 0) {
 
-                String updateStatus = "UPDATE appointment SET PaymentStatus = ? WHERE AppointmentID = ?";
+                String updateStatus = "UPDATE payment SET PaymentStatus = ? WHERE AppointmentID = ?";
                 PreparedStatement updatePstmt = db.getConnection().prepareStatement(updateStatus);
                 updatePstmt.setString(1, "PAID");
                 updatePstmt.setInt(2, appoinmentID);
@@ -111,6 +117,10 @@ public class PaymentController implements Initializable {
                     alert.setHeaderText(null);
                     alert.setContentText("Payment successfully processed and status updated to PAID.");
                     alert.showAndWait();
+
+                    if (homeController != null) {
+                        homeController.loadAppointments();
+                    }
 
                     Stage stage = (Stage) PaymentBTN.getScene().getWindow();
                     stage.close();
