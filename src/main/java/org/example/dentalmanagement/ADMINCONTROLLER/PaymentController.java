@@ -10,7 +10,6 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class PaymentController implements Initializable {
@@ -21,6 +20,7 @@ public class PaymentController implements Initializable {
     private String appointmentTime;
     private String service;
     private Double ServiceCost;
+    private int PatientID;
 
     @FXML
     private Label AppointmentDateLabel;
@@ -44,7 +44,7 @@ public class PaymentController implements Initializable {
     private Label TotalLabel;
 
 
-    public void setData(int appointmentID, String patientName, String appointmentDate, String appointmentTime, String service) {
+    public void setData(int appointmentID, String patientName, String appointmentDate, String appointmentTime, String service, int patientID) {
         this.appoinmentID = appointmentID;
         this.appoinmentName = patientName;
         this.appointmentDate = appointmentDate;
@@ -53,8 +53,6 @@ public class PaymentController implements Initializable {
 
         AppointmentIDLabel.setText(String.valueOf(appointmentID));
         PatientNameLabel.setText(patientName);
-        AppointmentDateLabel.setText(appointmentDate);
-        AppointmentTimeLabel.setText(appointmentTime);
         ServiceLabel.setText(service);
         ServiceCostLabel.setText(String.valueOf(ServiceCost));
         TotalLabel.setText(String.valueOf(ServiceCost));
@@ -84,13 +82,23 @@ public class PaymentController implements Initializable {
                 System.out.println("No service cost found for: " + service);
             }
 
+            String query = "SELECT PatientID FROM patient WHERE FullName = ?";
+            pmt = db.getConnection().prepareStatement(query);
+            pmt.setString(1, appoinmentName);
+
+            while (rs.next()) {
+                PatientID = rs.getInt("PatientID");
+                appoinmentName = rs.getString("FullName");
+                instance.setPatientID(PatientID);
+                System.out.println("PATIENT ID " + PatientID);
+            }
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("DONE PAYING");
             alert.setHeaderText(null);
             alert.setContentText("Payment Method");
             alert.showAndWait();
 
-            // Clear the labels
+
             AppointmentIDLabel.setText("");
             PatientNameLabel.setText("");
             AppointmentDateLabel.setText("");

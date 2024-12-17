@@ -75,7 +75,7 @@ public class HomeController implements Initializable {
             Scene scene = new Scene(fxml.load());
 
             PaymentController paymentMethod = fxml.getController();
-            paymentMethod.setData(appointmentID, patientName,appointmentDate,appointmentTime,service);
+            paymentMethod.setData(appointmentID, patientName,appointmentDate,appointmentTime,service,PatientID);
             stage.setScene(scene);
             stage.show();
         }
@@ -143,6 +143,7 @@ public class HomeController implements Initializable {
             e.printStackTrace();
         }
     }
+    private int PatientID;
     private int appointmentID;
     private String patientName;
     private String appointmentDate;

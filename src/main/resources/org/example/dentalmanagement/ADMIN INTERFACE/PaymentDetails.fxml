@@ -28,27 +28,17 @@
             <Font name="Palatino Linotype" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="28.0" layoutY="191.0" prefHeight="29.0" prefWidth="191.0" text="APPOINTMENT DATE:" textFill="#081f5c">
-         <font>
-            <Font name="Palatino Linotype Bold" size="16.0" />
-         </font>
-      </Label>
       <Label layoutX="28.0" layoutY="110.0" prefHeight="29.0" prefWidth="177.0" text="APPOINTMENT ID: " textFill="#081f5c">
          <font>
             <Font name="Palatino Linotype Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="28.0" layoutY="232.0" prefHeight="29.0" prefWidth="191.0" text="APPOINTMENT TIME:" textFill="#081f5c">
+      <Label layoutX="28.0" layoutY="192.0" prefHeight="29.0" prefWidth="191.0" text="SERVICE:" textFill="#081f5c">
          <font>
             <Font name="Palatino Linotype Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="28.0" layoutY="273.0" prefHeight="29.0" prefWidth="191.0" text="SERVICE:" textFill="#081f5c">
-         <font>
-            <Font name="Palatino Linotype Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="28.0" layoutY="312.0" prefHeight="29.0" prefWidth="191.0" text="SERVICE COST:" textFill="#081f5c">
+      <Label layoutX="28.0" layoutY="232.0" prefHeight="29.0" prefWidth="191.0" text="SERVICE COST:" textFill="#081f5c">
          <font>
             <Font name="Palatino Linotype Bold" size="16.0" />
          </font>
@@ -65,10 +55,7 @@
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="29.0" layoutX="240.0" layoutY="110.0" stroke="WHITE" strokeType="INSIDE" width="247.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="29.0" layoutX="240.0" layoutY="150.0" stroke="WHITE" strokeType="INSIDE" width="247.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="29.0" layoutX="240.0" layoutY="191.0" stroke="WHITE" strokeType="INSIDE" width="247.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="29.0" layoutX="240.0" layoutY="232.0" stroke="WHITE" strokeType="INSIDE" width="247.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="29.0" layoutX="240.0" layoutY="272.0" stroke="WHITE" strokeType="INSIDE" width="247.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="29.0" layoutX="240.0" layoutY="313.0" stroke="WHITE" strokeType="INSIDE" width="247.0" />
       <Label fx:id="AppointmentIDLabel" layoutX="240.0" layoutY="110.0" prefHeight="29.0" prefWidth="247.0" textFill="#081f5c">
          <font>
             <Font name="Palatino Linotype Bold" size="16.0" />
@@ -79,25 +66,13 @@
             <Font name="Palatino Linotype Bold" size="16.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="29.0" layoutX="240.0" layoutY="232.0" stroke="WHITE" strokeType="INSIDE" width="247.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="29.0" layoutX="240.0" layoutY="272.0" stroke="WHITE" strokeType="INSIDE" width="247.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="29.0" layoutX="240.0" layoutY="313.0" stroke="WHITE" strokeType="INSIDE" width="247.0" />
-      <Label fx:id="AppointmentDateLabel" layoutX="240.0" layoutY="191.0" prefHeight="29.0" prefWidth="247.0" textFill="#081f5c">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="29.0" layoutX="240.0" layoutY="192.0" stroke="WHITE" strokeType="INSIDE" width="247.0" />
+      <Label fx:id="ServiceLabel" layoutX="240.0" layoutY="192.0" prefHeight="29.0" prefWidth="247.0" textFill="#081f5c">
          <font>
             <Font name="Palatino Linotype Bold" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="AppointmentTimeLabel" layoutX="240.0" layoutY="232.0" prefHeight="29.0" prefWidth="247.0" textFill="#081f5c">
-         <font>
-            <Font name="Palatino Linotype Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="ServiceLabel" layoutX="240.0" layoutY="273.0" prefHeight="29.0" prefWidth="247.0" textFill="#081f5c">
-         <font>
-            <Font name="Palatino Linotype Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="ServiceCostLabel" layoutX="240.0" layoutY="313.0" prefHeight="29.0" prefWidth="247.0" textFill="#081f5c">
+      <Label fx:id="ServiceCostLabel" layoutX="240.0" layoutY="232.0" prefHeight="29.0" prefWidth="247.0" textFill="#081f5c">
          <font>
             <Font name="Palatino Linotype Bold" size="16.0" />
          </font>
