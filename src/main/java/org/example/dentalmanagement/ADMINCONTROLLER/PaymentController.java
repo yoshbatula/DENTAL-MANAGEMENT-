@@ -47,9 +47,8 @@ public class PaymentController implements Initializable {
     public void setData(int appointmentID, String patientName, String appointmentDate, String appointmentTime, String service, int patientID) {
         this.appoinmentID = appointmentID;
         this.appoinmentName = patientName;
-        this.appointmentDate = appointmentDate;
-        this.appointmentTime = appointmentTime;
         this.service = service;
+        this.PatientID = patientID;
 
         AppointmentIDLabel.setText(String.valueOf(appointmentID));
         PatientNameLabel.setText(patientName);
@@ -67,7 +66,7 @@ public class PaymentController implements Initializable {
         Singleton instance = Singleton.getInstance();
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
         try {
-            String sql = "SELECT ServiceCost FROM services WHERE ServiceName = ?";
+            String sql = "SELECT ServiceCost, ServiceName FROM services WHERE ServiceName = ?";
             PreparedStatement pmt = db.getConnection().prepareStatement(sql);
             pmt.setString(1, service);
 
@@ -77,20 +76,25 @@ public class PaymentController implements Initializable {
                 ServiceCost = rs.getDouble("ServiceCost");
                 service = rs.getString("ServiceName");
                 instance.setServiceCosts(ServiceCost);
-                System.out.println("SERVICE COST " + ServiceCost);
+                System.out.println("SERVICE COST: " + ServiceCost);
+                System.out.println("SERVICE NAME: " + service);
             } else {
-                System.out.println("No service cost found for: " + service);
+                System.out.println("No service found for: " + service);
+                return;
             }
 
             String query = "SELECT PatientID FROM patient WHERE FullName = ?";
             pmt = db.getConnection().prepareStatement(query);
             pmt.setString(1, appoinmentName);
 
-            while (rs.next()) {
-                PatientID = rs.getInt("PatientID");
-                appoinmentName = rs.getString("FullName");
+
+            ResultSet patientRs = pmt.executeQuery();
+            if (patientRs.next()) {
+                PatientID = patientRs.getInt("PatientID");
                 instance.setPatientID(PatientID);
-                System.out.println("PATIENT ID " + PatientID);
+                System.out.println("PATIENT ID: " + PatientID);
+            } else {
+                System.out.println("No patient found with name: " + appoinmentName);
             }
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("DONE PAYING");
@@ -101,8 +105,6 @@ public class PaymentController implements Initializable {
 
             AppointmentIDLabel.setText("");
             PatientNameLabel.setText("");
-            AppointmentDateLabel.setText("");
-            AppointmentTimeLabel.setText("");
             ServiceCostLabel.setText("");
             ServiceLabel.setText("");
             TotalLabel.setText("");
