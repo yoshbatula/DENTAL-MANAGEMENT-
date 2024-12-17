@@ -2,10 +2,16 @@ package org.example.dentalmanagement.ADMINCONTROLLER;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import org.example.dentalmanagement.DATABASE.DATABASECONNECTIVITY;
 
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class PaymentController implements Initializable {
@@ -39,6 +45,10 @@ public class PaymentController implements Initializable {
     @FXML
     private Label TotalLabel;
 
+    @FXML
+    private Button PaymentBTN;
+
+    private String paymentStatus = "PAID";
 
     public void setData(int appointmentID, String patientName, String service, Double serviceCost) {
         this.appoinmentID = appointmentID;
@@ -62,7 +72,30 @@ public class PaymentController implements Initializable {
         Singleton instance = Singleton.getInstance();
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
 
+        try {
+            Statement smt = db.getConnection().createStatement();
+            String sql = "INSERT INTO payment (AppointmentID,PatientID,PaymentStatus,Amount) VALUES (?,?,?,?)";
+            PreparedStatement psmt = db.getConnection().prepareStatement(sql);
+            psmt.setInt(1, appoinmentID);
+            psmt.setInt(2, PatientID);
+            psmt.setString(3, paymentStatus);
+            psmt.setDouble(4, ServiceCost);
 
+            int rows  = psmt.executeUpdate();
+
+            if (rows > 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Payment Method");
+                alert.setHeaderText(null);
+                alert.setContentText("Payment Method successfully");
+                alert.showAndWait();
+
+                Stage stage = (Stage) PaymentBTN.getScene().getWindow();
+                stage.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
