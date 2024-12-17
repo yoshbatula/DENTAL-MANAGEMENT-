@@ -69,15 +69,28 @@ public class HomeController implements Initializable {
     public void PaymentAppointment() throws IOException {
         AppointmentInfo SelectedAppointment = AppointmentTable.getSelectionModel().getSelectedItem();
 
-        if(SelectedAppointment != null) {
-            Stage stage = new Stage();
+        if (SelectedAppointment != null) {
+
             FXMLLoader fxml = new FXMLLoader(getClass().getResource("/org/example/dentalmanagement/ADMIN INTERFACE/PaymentDetails.fxml"));
             Scene scene = new Scene(fxml.load());
+            Stage stage = new Stage();
 
             PaymentController paymentMethod = fxml.getController();
-            paymentMethod.setData(appointmentID, patientName,appointmentDate,appointmentTime,service,PatientID,servicecost);
+            paymentMethod.setData(
+                    SelectedAppointment.getAppointmentID(),
+                    SelectedAppointment.getPatientName(),
+                    SelectedAppointment.getService(),
+                    servicecost
+            );
+
             stage.setScene(scene);
             stage.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Appointment Selected");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select an appointment from the table.");
+            alert.showAndWait();
         }
     }
 
@@ -186,7 +199,7 @@ public class HomeController implements Initializable {
                 service = rs.getString("ServiceName");
 
                 instance.setServiceCosts(servicecost);
-
+                System.out.println(servicecost);
             }
 
             AppointmentTable.setItems(AppointmentList);
