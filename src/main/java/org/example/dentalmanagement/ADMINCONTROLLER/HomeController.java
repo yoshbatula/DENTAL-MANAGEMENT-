@@ -6,13 +6,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import org.example.dentalmanagement.DATABASE.DATABASECONNECTIVITY;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -59,6 +62,24 @@ public class HomeController implements Initializable {
 
     @FXML
     private Button ResetBTN;
+
+    @FXML
+    private Button PaymentBTN;
+
+    public void PaymentAppointment() throws IOException {
+        AppointmentInfo SelectedAppointment = AppointmentTable.getSelectionModel().getSelectedItem();
+
+        if(SelectedAppointment != null) {
+            Stage stage = new Stage();
+            FXMLLoader fxml = new FXMLLoader(getClass().getResource("/org/example/dentalmanagement/ADMIN INTERFACE/PaymentDetails.fxml"));
+            Scene scene = new Scene(fxml.load());
+
+            PaymentController paymentMethod = fxml.getController();
+            paymentMethod.setData(appointmentID, patientName,appointmentDate,appointmentTime,service);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
 
     public void UpdateAppointments() {
        AppointmentInfo SelectedAppointment = AppointmentTable.getSelectionModel().getSelectedItem();
@@ -122,6 +143,11 @@ public class HomeController implements Initializable {
             e.printStackTrace();
         }
     }
+    private int appointmentID;
+    private String patientName;
+    private String appointmentDate;
+    private String appointmentTime;
+    private String service;
 
     public void loadAppointments() {
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
@@ -137,11 +163,11 @@ public class HomeController implements Initializable {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                int appointmentID = rs.getInt("AppointmentID");
-                String patientName = rs.getString("FullName");
-                String appointmentDate = rs.getString("AppointmentDate");
-                String appointmentTime = rs.getString("AppointmentTime");
-                String service = rs.getString("ServiceName");
+                appointmentID = rs.getInt("AppointmentID");
+                patientName = rs.getString("FullName");
+                appointmentDate = rs.getString("AppointmentDate");
+                appointmentTime = rs.getString("AppointmentTime");
+                service = rs.getString("ServiceName");
                 String paymentStatus = "Pending";
 
 

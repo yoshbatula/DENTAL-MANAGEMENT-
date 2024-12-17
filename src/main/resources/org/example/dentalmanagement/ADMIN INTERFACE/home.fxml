@@ -73,7 +73,7 @@
                   <Font name="Palatino Linotype Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="593.0" layoutY="663.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="153.0" style="-fx-background-color: #081f5c;" text="PAYMENT" textFill="WHITE">
+            <Button fx:id="PaymentBTN" layoutX="593.0" layoutY="663.0" mnemonicParsing="false" onAction="#PaymentAppointment" prefHeight="39.0" prefWidth="153.0" style="-fx-background-color: #081f5c;" text="PAYMENT" textFill="WHITE">
                <font>
                   <Font name="Palatino Linotype Bold" size="16.0" />
                </font>

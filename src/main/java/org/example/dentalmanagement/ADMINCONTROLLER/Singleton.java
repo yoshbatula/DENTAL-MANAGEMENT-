@@ -6,6 +6,7 @@ public class Singleton {
     private int PatientID;
     private int DoctorID;
     private int ServiceID;
+    private Double ServiceCosts;
 
     public int getDoctorID() {
         return DoctorID;
@@ -33,6 +34,13 @@ public class Singleton {
         return instance;
     }
 
+    public Double getServiceCosts() {
+        return ServiceCosts;
+    }
+
+    public void setServiceCosts(Double serviceCosts) {
+        ServiceCosts = serviceCosts;
+    }
     public int getPatientID() {
         return PatientID;
     }
