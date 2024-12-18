@@ -40,7 +40,7 @@ public class RevenueController implements Initializable {
 
     private void initializeTable() {
         AppointmentsIDColumn.setCellValueFactory(new PropertyValueFactory<RevenueInfo,Integer>("appointmentID"));
-        ServicesColumn.setCellValueFactory(new PropertyValueFactory<RevenueInfo,String>("serviceName"));
+        ServicesColumn.setCellValueFactory(new PropertyValueFactory<RevenueInfo,String>("service"));
         ServiceCostColumn.setCellValueFactory(new PropertyValueFactory<RevenueInfo,Double>("serviceCost"));
         loadRevenueData();
     }
@@ -67,7 +67,7 @@ public class RevenueController implements Initializable {
             }
 
             RevenueTable.setItems(RevenueList);
-            TotalLabel.setText("Total Revenue: $" + totalRevenue);
+            TotalLabel.setText("Total Revenue: ₱" + totalRevenue);
 
         } catch (SQLException e) {
             e.printStackTrace();
