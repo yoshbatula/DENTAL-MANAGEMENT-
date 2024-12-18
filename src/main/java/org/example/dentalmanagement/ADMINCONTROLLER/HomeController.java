@@ -26,7 +26,6 @@ public class HomeController implements Initializable {
         AppointmentTimeColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentTime"));
         ServiceColumn.setCellValueFactory(new PropertyValueFactory<>("service"));
         PaymentStatusColumn.setCellValueFactory(new PropertyValueFactory<>("paymentStatus"));
-
     }
 
     @FXML

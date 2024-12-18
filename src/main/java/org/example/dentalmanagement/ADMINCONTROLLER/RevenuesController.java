@@ -72,7 +72,7 @@ public class RevenuesController implements Initializable {
             }
 
             RevenueTable.setItems(RevenueList);
-            TotalLabel.setText("Total Revenue: $" + totalRevenue);
+            TotalLabel.setText(String.valueOf("₱" + totalRevenue));
 
         } catch (SQLException e) {
             e.printStackTrace();

@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1034.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1034.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.RECEPTIONIST_CONTROLLER.ServicesController">
    <children>
       <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="484.0">
          <children>
@@ -54,11 +54,11 @@
                </children>
             </VBox>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#081f5c" height="443.0" layoutX="20.0" layoutY="203.0" stroke="WHITE" strokeType="INSIDE" width="999.0" />
-            <TableView layoutX="40.0" layoutY="219.0" prefHeight="405.0" prefWidth="963.0">
+            <TableView fx:id="ServiceTable" layoutX="40.0" layoutY="219.0" prefHeight="405.0" prefWidth="963.0">
                <columns>
-                  <TableColumn editable="false" prefWidth="251.99992752075195" sortable="false" text="SERVICE ID" />
-                  <TableColumn editable="false" minWidth="7.33331298828125" prefWidth="484.0000305175781" sortable="false" text="SERVICE NAME" />
-                  <TableColumn editable="false" minWidth="7.33331298828125" prefWidth="227.3333740234375" sortable="false" text="SERVICE COST" />
+                  <TableColumn fx:id="ServiceIDColumn" editable="false" prefWidth="251.99992752075195" sortable="false" text="SERVICE ID" />
+                  <TableColumn fx:id="ServinceNameColumn" editable="false" minWidth="7.33331298828125" prefWidth="484.0000305175781" sortable="false" text="SERVICE NAME" />
+                  <TableColumn fx:id="ServiceCost" editable="false" minWidth="7.33331298828125" prefWidth="227.3333740234375" sortable="false" text="SERVICE COST" />
                </columns>
             </TableView>
          </children>

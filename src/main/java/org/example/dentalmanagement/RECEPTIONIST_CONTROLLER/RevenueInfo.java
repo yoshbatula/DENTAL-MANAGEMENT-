@@ -1,4 +1,4 @@
-package org.example.dentalmanagement.ADMINCONTROLLER;
+package org.example.dentalmanagement.RECEPTIONIST_CONTROLLER;
 
 public class RevenueInfo {
 
@@ -6,7 +6,7 @@ public class RevenueInfo {
     private String services;
     private Double serviceCost;
 
-    public RevenueInfo(int appointmentID, String services, Double serviceCost) {
+    RevenueInfo(int appointmentID, String services, Double serviceCost) {
         this.appointmentID = appointmentID;
         this.services = services;
         this.serviceCost = serviceCost;
@@ -35,3 +35,4 @@ public class RevenueInfo {
         this.serviceCost = serviceCost;
     }
 }
+

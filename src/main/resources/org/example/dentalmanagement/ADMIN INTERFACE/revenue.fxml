@@ -61,7 +61,7 @@
                   <Font name="Palatino Linotype Bold" size="30.0" />
                </font>
             </Label>
-            <Label fx:id="TotalLabel" layoutX="148.0" layoutY="661.0" prefHeight="46.0" prefWidth="429.0">
+            <Label fx:id="TotalLabel" layoutX="148.0" layoutY="661.0" prefHeight="46.0" prefWidth="429.0" textFill="#081f5c">
                <font>
                   <Font size="30.0" />
                </font>

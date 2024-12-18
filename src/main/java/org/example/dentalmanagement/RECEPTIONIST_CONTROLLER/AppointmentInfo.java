@@ -1,4 +1,4 @@
-package org.example.dentalmanagement.ADMINCONTROLLER;
+package org.example.dentalmanagement.RECEPTIONIST_CONTROLLER;
 
 public class AppointmentInfo {
 

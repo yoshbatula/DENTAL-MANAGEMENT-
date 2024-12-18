@@ -53,27 +53,22 @@
                </children>
             </VBox>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#081f5c" height="443.0" layoutX="20.0" layoutY="203.0" stroke="WHITE" strokeType="INSIDE" width="999.0" />
-            <TableView layoutX="40.0" layoutY="219.0" prefHeight="405.0" prefWidth="963.0">
+            <TableView fx:id="AppointmentTable" layoutX="40.0" layoutY="219.0" prefHeight="405.0" prefWidth="963.0">
               <columns>
-                <TableColumn editable="false" prefWidth="114.00000381469727" sortable="false" text="APPOINTMENT ID" />
-                <TableColumn editable="false" minWidth="7.33331298828125" prefWidth="187.3332977294922" sortable="false" text="PATIENT NAME" />
-                  <TableColumn editable="false" minWidth="7.33331298828125" prefWidth="153.333251953125" sortable="false" text="APPOINTMENT DATE:" />
-                  <TableColumn editable="false" minWidth="7.33331298828125" prefWidth="150.66665649414062" sortable="false" text="APPOINTMENT TIME:" />
-                  <TableColumn editable="false" minWidth="7.33331298828125" prefWidth="158.0" sortable="false" text="SERVICE" />
-                  <TableColumn editable="false" minWidth="7.33331298828125" prefWidth="198.00002034505212" sortable="false" text="DOCTOR" />
+                <TableColumn fx:id="AppointmentIDColumn" editable="false" prefWidth="114.00000381469727" sortable="false" text="APPOINTMENT ID" />
+                <TableColumn fx:id="PatientNameColumn" editable="false" minWidth="7.33331298828125" prefWidth="187.3332977294922" sortable="false" text="PATIENT NAME" />
+                  <TableColumn fx:id="AppointmentDateColumn" editable="false" minWidth="7.33331298828125" prefWidth="153.333251953125" sortable="false" text="APPOINTMENT DATE:" />
+                  <TableColumn fx:id="AppointmentTimeColumn" editable="false" minWidth="7.33331298828125" prefWidth="150.66665649414062" sortable="false" text="APPOINTMENT TIME:" />
+                  <TableColumn fx:id="ServiceColumn" editable="false" minWidth="7.33331298828125" prefWidth="158.0" sortable="false" text="SERVICE" />
+                  <TableColumn fx:id="PaymentStatusColumn" editable="false" minWidth="7.33331298828125" prefWidth="198.00002034505212" sortable="false" text="Payment Status" />
               </columns>
             </TableView>
-            <Button layoutX="759.0" layoutY="662.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="119.0" style="-fx-background-color: #081f5c;" text="UPDATE" textFill="WHITE">
-               <font>
-                  <Font name="Palatino Linotype Bold" size="16.0" />
-               </font>
-            </Button>
             <Button layoutX="898.0" layoutY="662.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="119.0" style="-fx-background-color: #081f5c;" text="DELETE" textFill="WHITE">
                <font>
                   <Font name="Palatino Linotype Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="593.0" layoutY="663.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="153.0" style="-fx-background-color: #081f5c;" text="PAYMENT" textFill="WHITE">
+            <Button fx:id="PaymentBTN" layoutX="731.0" layoutY="662.0" mnemonicParsing="false" onAction="#PaymentAppointment" prefHeight="39.0" prefWidth="153.0" style="-fx-background-color: #081f5c;" text="PAYMENT" textFill="WHITE">
                <font>
                   <Font name="Palatino Linotype Bold" size="16.0" />
                </font>

@@ -63,17 +63,12 @@
                   <TableColumn fx:id="PaymentStatusColumn" editable="false" minWidth="7.33331298828125" prefWidth="198.00002034505212" sortable="false" text="Payment Status" />
               </columns>
             </TableView>
-            <Button fx:id="UpdateBTN" layoutX="759.0" layoutY="662.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="119.0" style="-fx-background-color: #081f5c;" text="UPDATE" textFill="WHITE">
-               <font>
-                  <Font name="Palatino Linotype Bold" size="16.0" />
-               </font>
-            </Button>
             <Button fx:id="DeleteBTN" layoutX="898.0" layoutY="662.0" mnemonicParsing="false" onAction="#DeleteAppointment" prefHeight="39.0" prefWidth="119.0" style="-fx-background-color: #081f5c;" text="DELETE" textFill="WHITE">
                <font>
                   <Font name="Palatino Linotype Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="PaymentBTN" layoutX="593.0" layoutY="663.0" mnemonicParsing="false" onAction="#PaymentAppointment" prefHeight="39.0" prefWidth="153.0" style="-fx-background-color: #081f5c;" text="PAYMENT" textFill="WHITE">
+            <Button fx:id="PaymentBTN" layoutX="726.0" layoutY="662.0" mnemonicParsing="false" onAction="#PaymentAppointment" prefHeight="39.0" prefWidth="153.0" style="-fx-background-color: #081f5c;" text="PAYMENT" textFill="WHITE">
                <font>
                   <Font name="Palatino Linotype Bold" size="16.0" />
                </font>

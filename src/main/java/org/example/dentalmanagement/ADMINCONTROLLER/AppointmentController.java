@@ -240,6 +240,7 @@ public class AppointmentController implements Initializable {
             }
         }
     }
+
     public void Doctors() {
         this.DoctorNames = new ArrayList<>();
 
