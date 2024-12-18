@@ -66,9 +66,7 @@ public class PaymentController implements Initializable {
 
     private HomeController homeController;
 
-    public void setHomeController(HomeController homeController) {
-        this.homeController = homeController;
-    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -143,4 +141,7 @@ public class PaymentController implements Initializable {
         alert.showAndWait();
     }
 
+    public void setData(HomeController homeController) {
+        this.homeController = homeController;
+    }
 }
