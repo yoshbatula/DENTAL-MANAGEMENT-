@@ -150,10 +150,10 @@ public class AppointmentController implements Initializable {
     public void AddAppointment() {
         Singleton instance = Singleton.getInstance();
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
-        String SelectedDoctors = DoctorComboBox.getSelectionModel().getSelectedItem();
-        String SelectedTime = AppointmentTime.getSelectionModel().getSelectedItem();
-        LocalDate SelectedDate = AppointmentDatePicekr.getValue();
-        String SelectedServices = ServicesComboBox.getSelectionModel().getSelectedItem();
+        String selectedDoctor = DoctorComboBox.getSelectionModel().getSelectedItem();
+        String selectedTime = AppointmentTime.getSelectionModel().getSelectedItem();
+        LocalDate selectedDate = AppointmentDatePicekr.getValue();
+        String selectedService = ServicesComboBox.getSelectionModel().getSelectedItem();
 
         if (DoctorComboBox.getItems().isEmpty()) {
             DoctorComboBox.setStyle("-fx-border-color: red");
@@ -168,49 +168,61 @@ public class AppointmentController implements Initializable {
             AppointmentTime.setStyle("-fx-border-color: red");
         } else {
             try {
+
                 DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("h:mma");
                 DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-                LocalTime formattedTime = LocalTime.parse(SelectedTime.toUpperCase(), inputFormatter);
+                LocalTime formattedTime = LocalTime.parse(selectedTime.toUpperCase(), inputFormatter);
                 String convertedTime = formattedTime.format(outputFormatter);
 
-                Statement smt = db.getConnection().createStatement();
-                String sql = "SELECT DoctorID FROM doctor WHERE FullName = ?";
-                PreparedStatement psmt = db.getConnection().prepareStatement(sql);
-                psmt.setString(1, SelectedDoctors);
+                PreparedStatement psmt = db.getConnection().prepareStatement("SELECT DoctorID FROM doctor WHERE FullName = ?");
+                psmt.setString(1, selectedDoctor);
                 ResultSet rs = psmt.executeQuery();
-
-                while (rs.next()) {
+                if (rs.next()) {
                     DoctorID = rs.getInt("DoctorID");
                     instance.setDoctorID(DoctorID);
-                    System.out.println("DoctorID" + DoctorID);
                 }
 
-                String SQL = "SELECT ServiceID FROM services WHERE ServiceName = ?";
-                psmt = db.getConnection().prepareStatement(SQL);
-                psmt.setString(1, SelectedServices);
+                psmt = db.getConnection().prepareStatement("SELECT ServiceID, ServiceCost FROM services WHERE ServiceName = ?");
+                psmt.setString(1, selectedService);
                 rs = psmt.executeQuery();
-
-                while (rs.next()) {
+                double serviceCost = 0.0;
+                if (rs.next()) {
                     ServiceID = rs.getInt("ServiceID");
+                    serviceCost = rs.getDouble("ServiceCost");
                     instance.setServiceID(ServiceID);
-                    System.out.println("ServiceID" + ServiceID);
                 }
 
-                String insert = "INSERT INTO appointment (PatientID, DoctorID, ServiceID, AppointmentDate, AppointmentTime) VALUES (?,?,?,?,?)";
-                psmt = db.getConnection().prepareStatement(insert);
+                String insertAppointment = "INSERT INTO appointment (PatientID, DoctorID, ServiceID, AppointmentDate, AppointmentTime) VALUES (?,?,?,?,?)";
+                psmt = db.getConnection().prepareStatement(insertAppointment, Statement.RETURN_GENERATED_KEYS);
                 psmt.setInt(1, PatientID);
                 psmt.setInt(2, DoctorID);
                 psmt.setInt(3, ServiceID);
-                psmt.setDate(4, Date.valueOf(SelectedDate));
+                psmt.setDate(4, Date.valueOf(selectedDate));
                 psmt.setString(5, convertedTime);
 
-                int rowsaffected = psmt.executeUpdate();
+                int rowsAffected = psmt.executeUpdate();
+                if (rowsAffected > 0) {
+                    ResultSet generatedKeys = psmt.getGeneratedKeys();
+                    int appointmentID = -1;
+                    if (generatedKeys.next()) {
+                        appointmentID = generatedKeys.getInt(1);
+                    }
 
-                if (rowsaffected > 0) {
+                    String insertRevenue = "INSERT INTO revenue (AppointmentID, Service, ServiceCost) VALUES (?,?,?)";
+                    psmt = db.getConnection().prepareStatement(insertRevenue);
+                    psmt.setInt(1, appointmentID);
+                    psmt.setString(2, selectedService);
+                    psmt.setDouble(3, serviceCost);
+
+                    int revenueRows = psmt.executeUpdate();
+                    if (revenueRows > 0) {
+                        System.out.println("Revenue record successfully added.");
+                    }
+
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("ADDING APPOINTMENT");
+                    alert.setTitle("Appointment Added");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Added");
+                    alert.setContentText("Appointment and Revenue record successfully added.");
                     alert.showAndWait();
 
                     DoctorComboBox.getSelectionModel().clearSelection();

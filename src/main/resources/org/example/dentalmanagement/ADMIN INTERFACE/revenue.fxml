@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1034.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.ADMINCONTROLLER.RevenueController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1034.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.dentalmanagement.ADMINCONTROLLER.RevenuesController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" />
       <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="484.0">
@@ -51,8 +51,8 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#081f5c" height="443.0" layoutX="20.0" layoutY="203.0" stroke="WHITE" strokeType="INSIDE" width="999.0" />
             <TableView fx:id="RevenueTable" layoutX="40.0" layoutY="219.0" prefHeight="405.0" prefWidth="963.0">
                <columns>
-                  <TableColumn fx:id="AppointmentIDColumn" editable="false" prefWidth="182.66662979125977" sortable="false" text="APPOINTMENT ID" />
-                  <TableColumn fx:id="ServiceColumn" editable="false" minWidth="7.33331298828125" prefWidth="480.6667022705078" sortable="false" text="SERVICE" />
+                  <TableColumn fx:id="AppointmenstIDColumn" editable="false" prefWidth="182.66662979125977" sortable="false" text="APPOINTMENT ID" />
+                  <TableColumn fx:id="ServicesColumn" editable="false" minWidth="7.33331298828125" prefWidth="480.6667022705078" sortable="false" text="SERVICE" />
                   <TableColumn fx:id="ServiceCost" editable="false" minWidth="7.33331298828125" prefWidth="299.3333740234375" sortable="false" text="SERVICE COST" />
                </columns>
             </TableView>
@@ -61,7 +61,7 @@
                   <Font name="Palatino Linotype Bold" size="30.0" />
                </font>
             </Label>
-            <Label fx:id="TotalLabel" layoutX="148.0" layoutY="659.0" prefHeight="46.0" prefWidth="154.0">
+            <Label fx:id="TotalLabel" layoutX="148.0" layoutY="661.0" prefHeight="46.0" prefWidth="429.0">
                <font>
                   <Font size="30.0" />
                </font>

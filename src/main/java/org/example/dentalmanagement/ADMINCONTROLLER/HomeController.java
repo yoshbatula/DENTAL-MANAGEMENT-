@@ -6,10 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.example.dentalmanagement.DATABASE.DATABASECONNECTIVITY;
@@ -31,7 +28,6 @@ public class HomeController implements Initializable {
         PaymentStatusColumn.setCellValueFactory(new PropertyValueFactory<>("paymentStatus"));
 
     }
-
 
     @FXML
     private TableColumn<AppointmentInfo, String> AppointmentTimeColumn;
@@ -55,6 +51,8 @@ public class HomeController implements Initializable {
     private TableView<AppointmentInfo> AppointmentTable;
 
     private ObservableList<AppointmentInfo> AppointmentList = FXCollections.observableArrayList();
+
+    private ObservableList<RevenueInfo> RevenueList = FXCollections.observableArrayList();
 
     @FXML
     private Button DeleteBTN;
@@ -172,6 +170,7 @@ public class HomeController implements Initializable {
     public void loadAppointments() {
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
 
+
         AppointmentList.clear();
 
         String query = "SELECT a.AppointmentID, p.FullName, a.AppointmentDate, a.AppointmentTime, " +
@@ -185,18 +184,21 @@ public class HomeController implements Initializable {
                 Connection conn = db.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query);
                 ResultSet rs = stmt.executeQuery()
+
         ) {
+            AppointmentList.clear();
             while (rs.next()) {
                 int appointmentID = rs.getInt("AppointmentID");
                 String patientName = rs.getString("FullName");
                 String appointmentDate = rs.getString("AppointmentDate");
                 String appointmentTime = rs.getString("AppointmentTime");
                 String service = rs.getString("ServiceName");
-                double serviceCost = rs.getDouble("ServiceCost");
+                servicecost = rs.getDouble("ServiceCost");
                 String paymentStatus = rs.getString("PaymentStatus");
 
                 AppointmentList.add(new AppointmentInfo(
-                        appointmentID, patientName, appointmentDate, appointmentTime, service, serviceCost, paymentStatus
+                        appointmentID, patientName, appointmentDate,
+                        appointmentTime, service, servicecost, paymentStatus
                 ));
             }
 
