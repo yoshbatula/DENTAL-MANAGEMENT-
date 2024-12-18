@@ -2,7 +2,6 @@ package org.example.dentalmanagement.ADMINCONTROLLER;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -173,7 +172,6 @@ public class HomeController implements Initializable {
     public void loadAppointments() {
         DATABASECONNECTIVITY db = new DATABASECONNECTIVITY();
 
-
         AppointmentList.clear();
 
         String query = "SELECT a.AppointmentID, p.FullName, a.AppointmentDate, a.AppointmentTime, " +
@@ -187,21 +185,18 @@ public class HomeController implements Initializable {
                 Connection conn = db.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query);
                 ResultSet rs = stmt.executeQuery()
-
         ) {
-            AppointmentList.clear();
             while (rs.next()) {
                 int appointmentID = rs.getInt("AppointmentID");
                 String patientName = rs.getString("FullName");
                 String appointmentDate = rs.getString("AppointmentDate");
                 String appointmentTime = rs.getString("AppointmentTime");
                 String service = rs.getString("ServiceName");
-                servicecost = rs.getDouble("ServiceCost");
+                double serviceCost = rs.getDouble("ServiceCost");
                 String paymentStatus = rs.getString("PaymentStatus");
 
                 AppointmentList.add(new AppointmentInfo(
-                        appointmentID, patientName, appointmentDate,
-                        appointmentTime, service, paymentStatus, servicecost
+                        appointmentID, patientName, appointmentDate, appointmentTime, service, serviceCost, paymentStatus
                 ));
             }
 
