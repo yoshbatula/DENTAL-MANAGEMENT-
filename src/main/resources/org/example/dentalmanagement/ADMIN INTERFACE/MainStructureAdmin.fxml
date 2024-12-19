@@ -82,6 +82,11 @@
                   <Image url="@../images/LOGO%20(2).png" />
                </image>
             </ImageView>
+            <Button fx:id="LogoutBTN" alignment="CENTER" layoutX="101.0" layoutY="598.0" mnemonicParsing="false" onAction="#Logout" text="LOGOUT">
+               <font>
+                  <Font name="Palatino Linotype" size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <StackPane fx:id="container" layoutX="282.0" prefHeight="723.0" prefWidth="1004.0">

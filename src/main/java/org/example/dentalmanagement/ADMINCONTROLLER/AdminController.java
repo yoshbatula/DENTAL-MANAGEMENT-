@@ -6,12 +6,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
@@ -34,6 +39,9 @@ public class AdminController implements Initializable {
     @FXML
     private Button ServicesBTN;
 
+    @FXML
+    private Button LogoutBTN;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -43,6 +51,28 @@ public class AdminController implements Initializable {
         }
     }
 
+    public void Logout() throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("Logout");
+        alert.setContentText("Are you sure you want to logout?");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.OK) {
+
+            Stage window = (Stage) LogoutBTN.getScene().getWindow();
+            window.close();
+
+            Stage stage1 = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/dentalmanagement/LOGIN INTERFACE/ADMIN.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage1.setResizable(false);
+            stage1.setTitle("Main Panel");
+            stage1.setScene(scene);
+            stage1.show();
+        }
+
+    }
     private StackPane loadFXML(String fxmlFileName) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFileName));
         return fxmlLoader.load();
